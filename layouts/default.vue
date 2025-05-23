@@ -6,6 +6,9 @@
 
     <!-- Where the page content renders -->
     <NuxtPage />
+
+    <!-- Footer Components -->
+    <Footer />
   </div>
 </template>
 

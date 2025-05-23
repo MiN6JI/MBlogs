@@ -1,8 +1,10 @@
-<!-- pages/index.vue -->
 <template>
-  <div class="text-center py-8">
+  <!-- <div class="text-center py-8">
     <h1 class="text-3xl font-bold">Hello from the Home Page 👋</h1>
     <p>This page uses the default layout, which includes the BlogCard above.</p>
+  </div> -->
+  <div>
+    <HeroSection />
   </div>
 </template>
 

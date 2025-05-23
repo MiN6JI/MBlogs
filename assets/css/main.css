@@ -1,2 +1,26 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Poppins", sans-serif;
+
+  --breakpoint-3xl: 1920px;
+    
+  --color-mint: #60efb8;
+  --color-willow: #f5faf4;
+  --color-jet: #151515;
+  --color-snow: #fff;
+  --color-mist: #f5f5ff;
+  --color-ash: #fff;
+  --color-text: #212529;
+}
+
+
+/* assets/css/main.css */
+.flex-between {
+  @apply w-full flex flex-row justify-between;
+}
+
+.flex-center {
+  @apply flex flex-row justify-center items-center;
+}

@@ -1,49 +1,56 @@
 <template>
-  <nav class="navbar">
-    <div class="nav-container">
-      <NuxtLink to="/" class="logo">MyBlog</NuxtLink>
-      <div class="nav-links">
-        <NuxtLink to="/blog" class="nav-item">Blog</NuxtLink>
-        <NuxtLink to="/profile" class="nav-item">Profile</NuxtLink>
-        <NuxtLink to="/login" class="nav-item">Login</NuxtLink>
+  <header class="w-full z-50">
+    <div
+      class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+    >
+      <!-- Logo -->
+      <div class="flex flex-row gap-1 justify-center">
+        <img src="/public/logo.png" alt="Mblogs" class="logo" />
+        <div class="text-xl italic font-bold text-[var(--color-text)]">
+          Blogs
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <NuxtLink
+          to="#home"
+          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
+          >Home</NuxtLink
+        >
+        <NuxtLink
+          to="#about"
+          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
+          >About</NuxtLink
+        >
+        <NuxtLink
+          to="#portfolio"
+          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
+          >Portfolio</NuxtLink
+        >
+        <NuxtLink
+          to="#contact"
+          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
+          >Contact</NuxtLink
+        >
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <div>
+        <UButton color="neutral" variant="soft">Sign In</UButton>
       </div>
     </div>
-  </nav>
+  </header>
 </template>
 
+<script setup>
+// No specific logic yet, could add mobile menu toggle later
+</script>
+
 <style scoped>
-.navbar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 1rem 2rem;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .logo {
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-decoration: none;
-  color: #333;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-item {
-  text-decoration: none;
-  color: #555;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.nav-item:hover {
-  color: #000;
+  width: 23px;
+  height: 23px;
+  object-fit: cover;
 }
 </style>
