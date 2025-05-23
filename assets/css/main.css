@@ -21,6 +21,10 @@
   @apply w-full flex flex-row justify-between;
 }
 
+.flex-justify {
+  @apply w-full flex flex-row justify-center;
+}
+
 .flex-center {
   @apply flex flex-row justify-center items-center;
 }
