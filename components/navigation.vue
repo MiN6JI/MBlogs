@@ -1,46 +1,24 @@
 <template>
-  <header class="w-full z-50">
-    <div
-      class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
-    >
-      <!-- Logo -->
-      <div class="flex flex-row gap-1 justify-center">
-        <img src="/public/logo.png" alt="Mblogs" class="logo" />
-        <div class="text-xl italic font-bold text-[var(--color-text)]">
-          Blogs
+  <UContainer class="w-full pt-5 pb-4">
+    <header class="w-full z-50">
+      <div class="w-full flex flex-row justify-between h-14">
+        <div class="flex-center gap-1">
+          <img src="/public/logo.png" alt="MBlogs" width="25">
+          <div class="font-bold text-2xl leading-7">
+            Blogs
+          </div>
         </div>
+        <div class="w-1/3">
+          <ul>
+            <li>Home</li>
+            <li>Blog</li>
+            <li>Projects</li>
+          </ul>
+        </div>
+        <div class="w-1/3">HI</div>
       </div>
-
-      <!-- Navigation -->
-      <nav class="hidden md:flex space-x-8">
-        <NuxtLink
-          to="#home"
-          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
-          >Home</NuxtLink
-        >
-        <NuxtLink
-          to="#about"
-          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
-          >About</NuxtLink
-        >
-        <NuxtLink
-          to="#portfolio"
-          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
-          >Portfolio</NuxtLink
-        >
-        <NuxtLink
-          to="#contact"
-          class="text-[var(--color-text)] hover:text-[var(--color-mint)] transition"
-          >Contact</NuxtLink
-        >
-      </nav>
-
-      <!-- Mobile Menu Button -->
-      <div>
-        <UButton color="neutral" variant="soft">Sign In</UButton>
-      </div>
-    </div>
-  </header>
+    </header>
+  </UContainer>
 </template>
 
 <script setup>
