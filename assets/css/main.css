@@ -5,16 +5,16 @@
   --font-sans: "Poppins", sans-serif;
 
   --breakpoint-3xl: 1920px;
-    
+
   --color-mint: #60efb8;
+  --color-shadow: #56dba8;
   --color-willow: #f5faf4;
-  --color-jet: #151515;
+  --color-jet: #263238;
   --color-snow: #fff;
   --color-mist: #f5f5ff;
   --color-ash: #fff;
   --color-text: #212529;
 }
-
 
 /* assets/css/main.css */
 .flex-between {
@@ -27,4 +27,25 @@
 
 .flex-center {
   @apply flex flex-row justify-center items-center;
+}
+
+.text-font {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  padding: 20px 20px 25px 20px;
+}
+
+.heading-hero {
+  font-size: 100px;
+  font-weight: 600;
+  line-height: 0.9em;
+}
+
+.sub-heading {
+  @apply text-center text-[46px] tracking-tight font-medium leading-[1.08] text-[var(--color-jet)] py-[30px];
+}
+
+.normal-text {
+  @apply text-[15px] font-normal leading-[24px];
 }
