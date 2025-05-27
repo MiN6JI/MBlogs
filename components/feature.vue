@@ -10,10 +10,28 @@
         gives you the tools to create, grow, and monetize your blog with ease.
       </p>
     </div>
-    <div class="w-full flex flex-row">
-      <div class="w-1/3"><FeatureCard /></div>
-      <div class="w-1/3"><FeatureCard /></div>
-      <div class="w-1/3"><FeatureCard /></div>
+    <div class="flex flex-row justify-between px-10">
+      <div class="w-1/3 p-4">
+        <FeatureCard
+          icon="lucide-lab:feather-square"
+          title="Build Trust"
+          information="Share knowledge to show expertise and gain credibility."
+        />
+      </div>
+      <div class="w-1/3 p-4">
+        <FeatureCard
+          icon="lucide-lab:feather-square"
+          title="Build Trust"
+          information="Share knowledge to show expertise and gain credibility."
+        />
+      </div>
+      <div class="w-1/3 p-4">
+        <FeatureCard
+          icon="lucide-lab:feather-square"
+          title="Build Trust"
+          information="Share knowledge to show expertise and gain credibility."
+        />
+      </div>
     </div>
   </UContainer>
 </template>

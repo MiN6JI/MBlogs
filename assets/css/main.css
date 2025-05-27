@@ -42,6 +42,10 @@
   line-height: 0.9em;
 }
 
+.small-heading {
+  @apply text-xl font-semibold leading-[1.33em];
+}
+
 .sub-heading {
   @apply text-center text-[46px] tracking-tight font-medium leading-[1.08] text-[var(--color-jet)] py-[30px];
 }
