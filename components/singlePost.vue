@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-6">
+  <div class="flex flex-col gap-6 p-2">
     <div class="flex-center aspect-1">
       <img
         src="https://picsum.photos/1920/1280"

@@ -9,7 +9,7 @@
         <div class="flex-center">
           <ul class="flex flex-row justify-center items-center gap-4">
             <li class="text-font">Home</li>
-            <li class="text-font"><nuxt-link to="/blog">Blog</nuxt-link></li>
+            <li class="text-font"><nuxt-link to="/blogs">Blogs</nuxt-link></li>
             <li class="text-font">Projects</li>
             <li class="text-font">Contact</li>
             <li class="text-font">Shop</li>
