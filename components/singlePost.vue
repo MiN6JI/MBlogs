@@ -1,15 +1,18 @@
 <template>
-  <UCard>
-    <img
-      src="https://picsum.photos/200/300/?blur=2"
-      alt="post"
-      class="w-full h-64"
-    />
-    <div class="text-xl font-bold">This is the Blog title</div>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique,
-      magni.
-    </p>
-    <UButton label="Read more"/>
-  </UCard>
+  <div class="flex flex-col gap-6">
+    <div class="flex-center aspect-1">
+      <img
+        src="https://picsum.photos/1920/1280"
+        class="rounded-[15px]"
+        alt="postImage"
+      />
+    </div>
+    <div class="flex flex-col gap-5 pt-4">
+      <div class="small-heading">This is the post title</div>
+      <p class="normal-text">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus,
+        voluptates.
+      </p>
+    </div>
+  </div>
 </template>

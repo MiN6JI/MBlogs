@@ -1,7 +1,7 @@
 <template>
   <UContainer class="bg-gray-50 py-18">
     <div class="flex flex-col justify-center items-center">
-      <div class="sub-heading">
+      <div class="sub-heading text-center">
         The Ultimate Platform for <br />
         Smart Bloggers
       </div>

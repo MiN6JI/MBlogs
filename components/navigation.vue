@@ -9,14 +9,18 @@
         <div class="flex-center">
           <ul class="flex flex-row justify-center items-center gap-4">
             <li class="text-font">Home</li>
-            <li class="text-font">Blog</li>
+            <li class="text-font"><nuxt-link to="/blog">Blog</nuxt-link></li>
             <li class="text-font">Projects</li>
             <li class="text-font">Contact</li>
             <li class="text-font">Shop</li>
           </ul>
         </div>
         <div class="flex-center">
-          <UButton size="lg" class="rounded-full bg-[var(--color-mint)] hover:bg-[var(--color-shadow)] px-6"  label="Sign Up" />
+          <UButton
+            size="lg"
+            class="rounded-full bg-[var(--color-mint)] hover:bg-[var(--color-shadow)] px-6"
+            label="Sign Up"
+          />
         </div>
       </div>
     </header>

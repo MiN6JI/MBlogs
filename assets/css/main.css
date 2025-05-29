@@ -43,11 +43,11 @@
 }
 
 .small-heading {
-  @apply text-xl font-semibold leading-[1.33em];
+  @apply text-xl font-semibold leading-[0.2];
 }
 
 .sub-heading {
-  @apply text-center text-[46px] tracking-tight font-medium leading-[1.08] text-[var(--color-jet)] py-[30px];
+  @apply text-[46px] tracking-tight font-medium leading-[1.08] text-[var(--color-jet)] py-[30px];
 }
 
 .normal-text {
