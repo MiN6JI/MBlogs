@@ -1,16 +1,22 @@
 <template>
-  <div class="w-[50%] bg-[#CFFAEA] flex-center rounded-xl">
-    <img src="/public/Blog Figure 4.png" alt="Auth Image" width="500" />
-  </div>
-  <div class="w-[50%] flex-center text-center">
-    <div class="flex flex-col justify-center p-[50px] gap-2">
-      <div class="text-5xl font-bold text-jet">Welcome Back</div>
+    <div class="w-[50%] flex-center text-center">
+    <div class="w-full flex flex-col justify-center p-[50px] gap-2">
+      <div class="text-5xl font-bold text-jet">Registration</div>
       <div>
         <p class="normal-text">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit Autem.
+          Please fill in your details to create an account.
         </p>
       </div>
       <div class="flex flex-col gap-4 py-6">
+        <UInput
+          class="w-full"
+          v-model="name"
+          type="text"
+          placeholder="Name"
+          size="xl"
+          :ui="{ base: 'w-full rounded-3xl py-3 px-6' }"
+        />
+
         <UInput
           class="w-full"
           v-model="email"
@@ -44,11 +50,14 @@
           class="mt-4 text-center bg-[var(--color-jet)]"
           type="submit"
           label="Submit"
-          to="/auth/register"
+          to="/"
           :ui="{ base: 'w-full rounded-3xl py-3 px-6' }"
         />
       </div>
     </div>
+  </div>
+  <div class="w-[50%] bg-[#CFFAEA] flex-center rounded-xl">
+    <img src="/public/Blog Figure 6.png" alt="Auth Image" width="500" />
   </div>
 </template>
 <script setup>
