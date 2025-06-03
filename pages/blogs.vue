@@ -12,10 +12,6 @@
   </UContainer>
 </template>
 <script setup>
-definePageMeta({
-  layout: "inner",
-});
-
 const route = useRoute();
 
 const items = [
