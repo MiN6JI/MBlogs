@@ -5,11 +5,11 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", "@nuxt/icon"],
   css: ["~/assets/css/main.css"],
   components: [{ path: "~/components", pathPrefix: false }],
-  // ui: {
-  //   theme: {
-  //     colors: {
-
-  //     }
-  //   }
-  // }
+  appConfig: {
+    ui: {
+      container: {
+        base: 'w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-10',
+      },
+    },
+  },
 });

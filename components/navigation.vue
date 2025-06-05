@@ -1,5 +1,5 @@
 <template>
-  <UContainer class="w-full pt-3 pb-2 border-[#dee1e7]">
+  <UContainer class="w-full pt-3 pb-2 border-b-1 border-[#dee1e7]">
     <header class="w-full z-50">
       <div class="w-full flex flex-row justify-between h-14">
         <div class="flex-center gap-1">
