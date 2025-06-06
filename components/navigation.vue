@@ -1,5 +1,5 @@
 <template>
-  <UContainer class="w-full pt-3 pb-2 border-b-1 border-[#dee1e7]">
+  <div class="w-full px-8 pt-3 pb-2 border-b-1 border-[#dee1e7]">
     <header class="w-full z-50">
       <div class="w-full flex flex-row justify-between h-14">
         <div class="flex-center gap-1">
@@ -7,10 +7,12 @@
           <div class="font-bold text-2xl leading-7">Blogs</div>
         </div>
         <div class="flex-center">
-          <ul class="flex flex-row justify-center items-center gap-4">
+          <ul class="flex flex-row justify-center items-center space-x-4">
             <li class="text-font"><nuxt-link to="/">Home</nuxt-link></li>
             <li class="text-font"><nuxt-link to="/blogs">Blogs</nuxt-link></li>
-            <li class="text-font"><nuxt-link to="/profile">Profile</nuxt-link></li>
+            <li class="text-font">
+              <nuxt-link to="/profile">Profile</nuxt-link>
+            </li>
             <li class="text-font">
               <UButton
                 size="lg"
@@ -31,7 +33,7 @@
         </div> -->
       </div>
     </header>
-  </UContainer>
+  </div>
 </template>
 
 <script setup>

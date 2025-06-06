@@ -1,6 +1,5 @@
-<!-- layouts/default.vue -->
 <template>
-  <div class="min-h-screen bg-gray-100">
+  <div class="min-h-screen">
     <!-- Layout-level component -->
     <Navigation />
 
@@ -11,7 +10,4 @@
     <Footer />
   </div>
 </template>
-
-<script setup>
-// Nuxt auto-imports components from /components
-</script>
+F
