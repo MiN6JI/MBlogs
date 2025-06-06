@@ -1,6 +1,6 @@
 <!-- layouts/default.vue -->
 <template>
-  <div class="min-h-screen pbg-gray-100">
+  <div class="min-h-screen bg-gray-100">
     <!-- Layout-level component -->
     <Navigation />
 
