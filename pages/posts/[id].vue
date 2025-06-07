@@ -5,7 +5,7 @@
         <div>
           <div class="w-full flex flex-row py-6">
             <div class="w-1/2">
-              <div class="text-gray normal-text">October 5, 2025</div>
+              <div class="text-gray normal-text">{{ post.created_at }}</div>
             </div>
             <div class="w-1/2 flex justify-end">
               <div
@@ -25,7 +25,7 @@
           </div>
           <div class="py-2">
             <div class="sub-heading">
-              Financial Planning for Entrepreneurs: A Success Blueprint
+              {{ post.title }}
             </div>
           </div>
         </div>
@@ -70,3 +70,9 @@
     </div>
   </UContainer>
 </template>
+
+<script setup>
+const route = useRoute();
+
+const { data: post } = await useFetch(`http://127.0.0.1:8000/api/posts/${route.params.id}`);
+</script>

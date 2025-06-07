@@ -3,7 +3,7 @@
         <h3 class="text-3xl font-bold"><Nuxt-link :to="`/posts/${post.id}`">{{ post.title }}</Nuxt-link></h3>
         <div class="post-meta text-gray-700-flex item-center space-x-2">
             <div class="py-2">
-                {{ format(new Date(post.created_at), 'MMMM dd, yyyy') }} 
+                <!-- {{ format(new Date(post.created_at), 'MMMM dd, yyyy') }}  -->
                 | 
                 {{ post.user.name }} 
             </div>

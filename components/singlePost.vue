@@ -8,8 +8,8 @@
       />
     </div>
     <div class="flex flex-col gap-5 pt-4">
-      <div class="small-heading">
-        <!-- <Nuxt-link :to="`/posts/${post.id}`">{{ post.title }}</Nuxt-link> -->
+      <div class="font-bold">
+        <Nuxt-link :to="`/posts/${post.id}`">{{ post.title }}</Nuxt-link>
       </div>
       <p class="normal-text">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus,
@@ -19,7 +19,7 @@
   </div>
 </template>
 <script setup>
-const props = defineProps({
+const { post } = defineProps({
   post: Object,
 });
 </script>
