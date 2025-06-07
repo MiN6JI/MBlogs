@@ -7,7 +7,7 @@
   </UContainer>
   <UContainer>
     <div class="flex-justify px-30 py-10 flex-wrap">
-      <div v-for="post in 10" :key="index" class="w-1/3"><SinglePost /></div>
+      <!-- <div v-for="item in 10" :key="index" class="w-1/3"><SinglePost /></div> -->
     </div>
 
     <div class="space-y-6">
@@ -18,7 +18,7 @@
 <script setup>
 const route = useRoute();
 
-const { data: posts } = await useFetch("http//localhost:8000/api/posts");
+const { data: posts } = await useFetch('http//localhost:8000/api/posts');
 
 const items = [
   { label: "Home", icon: "i-lucide-house", to: "/" },
