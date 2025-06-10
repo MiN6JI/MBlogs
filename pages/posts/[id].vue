@@ -1,7 +1,9 @@
 <template>
+  <!-- <pre>{{ post }}</pre> -->
+
   <UContainer class="p-10">
-    <div class="py-10 w-full rounded-xl bg-gray-100">
-      <div class="w-[60%] mx-auto py-10">
+    <div class="p-10 w-full flex flex-col items-center rounded-xl bg-gray-100">
+      <div class="w-[60%]">
         <div>
           <div class="w-full flex flex-row py-6">
             <div class="w-1/2">
@@ -29,15 +31,8 @@
             </div>
           </div>
         </div>
-        <p class="normal-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa omnis
-          dolore non molestiae? Fugiat quia mollitia ipsam, beatae laudantium
-          deleniti tempore assumenda corporis aperiam blanditiis facilis
-          dolorem, maiores consectetur rerum at aut est eveniet ab iste
-          cupiditate delectus! Perspiciatis explicabo repudiandae at officia
-          cumque voluptatem earum tenetur ab accusamus voluptatibus.
-        </p>
-        <p class="normal-text pt-6">
+        <p class="normal-text">{{ post.body }}</p>
+        <!-- <p class="normal-text pt-4">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda,
           quis dolores quibusdam dicta deserunt architecto explicabo beatae
           voluptates dolor aut id ipsa nihil magni porro molestiae ex numquam
@@ -50,14 +45,14 @@
           placeat quas dolores accusantium? Cupiditate pariatur laborum illo qui
           aliquid corporis repudiandae nisi?
         </p>
-        <p class="pt-6 normal-text">
+        <p class="pt-4 normal-text">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa omnis
           dolore non molestiae? Fugiat quia mollitia ipsam, beatae laudantium
           deleniti tempore assumenda corporis aperiam blanditiis facilis
           dolorem, maiores consectetur rerum at aut est eveniet ab iste
           cupiditate delectus! Perspiciatis explicabo repudiandae at officia
           cumque voluptatem earum tenetur ab accusamus voluptatibus.
-        </p>
+        </p> -->
       </div>
     </div>
   </UContainer>
@@ -70,9 +65,9 @@
     </div>
   </UContainer>
 </template>
-
 <script setup>
 const route = useRoute();
-
-const { data: post } = await useFetch(`http://127.0.0.1:8000/api/posts/${route.params.id}`);
+const { data: post } = await useFetch(
+  `http://127.0.0.1:8000/api/posts/${route.params.id}`
+);
 </script>

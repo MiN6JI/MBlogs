@@ -8,9 +8,11 @@
       />
     </div>
     <div class="flex flex-col gap-5 pt-4">
-      <div class="font-bold">
+      <div class="font-bold" v-if="post">
         <Nuxt-link :to="`/posts/${post.id}`">{{ post.title }}</Nuxt-link>
       </div>
+
+      <div v-else>Loading...</div>
       <p class="normal-text">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus,
         voluptates.
@@ -21,5 +23,6 @@
 <script setup>
 const { post } = defineProps({
   post: Object,
+  required: true,
 });
 </script>
