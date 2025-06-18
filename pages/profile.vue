@@ -14,7 +14,7 @@
           <div class="text-white">deorukhkarshruti232@gmail.com</div>
         </div>
         <div class="w-1/5 flex-center">
-          <UButton label="Create Post" size="xl" />
+          <UButton label="Create Post" size="xl" to="/posts/create"/>
         </div>
       </div>
     </UCard>
@@ -29,10 +29,12 @@
   </UContainer>
   <UContainer class="bg-gray-100">
     <div class="sub-heading text-center">Your Posts</div>
-    <div class="bg-white text-center h-screen flex flex-col justify-center gap-4">
+    <div
+      class="bg-white text-center h-screen flex flex-col justify-center gap-4"
+    >
       <div>You haven't created any articles yet.</div>
       <div>
-        <UButton label="Create Post" />
+        <UButton label="Create Post" to="/posts/create" />
       </div>
     </div>
   </UContainer>

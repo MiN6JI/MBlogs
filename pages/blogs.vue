@@ -16,7 +16,12 @@
 <script setup>
 const route = useRoute();
 
-const { data: posts } = await useFetch("http://127.0.0.1:8000/api/posts");
+const post = await  useNuxtApp.$apiFetch('/api/posts');
+
+
+// const { data: posts } = await useFetch("/api/posts", {
+//   baseURL: "http://127.0.0.1:8000",
+// });
 
 const items = [
   { label: "Home", icon: "i-lucide-house", to: "/" },
