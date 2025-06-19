@@ -19,65 +19,52 @@
     </div>
   </UContainer>
   <UContainer class="p-10">
-    <div class="p-10 w-full flex flex-col items-center rounded-xl bg-gray-100">
+    <div class="w-full mx-auto py-10 rounded-xl bg-gray-100">
       <UForm
-        :state="state"
-        :validate="validate"
-        @submit="onSubmit"
-        class="flex-col"
+        :schema="schema"
+        class="space-y-3"
+        :state="formInputs"
+        @submit="submit"
       >
-        <UFormGroup label="Email" name="email">
+        <UFormField name="blogTitle" label="Blog Title" size="lg">
+          <UInput class="w-full" v-model="formInputs.title" />
+        </UFormField>
+        <UFormField name="blogBody" label="Blog Body" size="lg">
+          <UTextarea class="w-full" v-model="formInputs.body" />
+        </UFormField>
+        <UFormField name="blogImg" label="Image" size="lg">
           <UInput
-            v-model="state.email"
-            type="email"
-            placeholder="Enter your email"
+            type="file"
+            accept="image/*"
+            class="w-full"
+            v-model="formInputs.image"
           />
-        </UFormGroup>
-
-        <UFormGroup label="Password" name="password">
-          <UInput
-            v-model="state.password"
-            type="password"
-            placeholder="Enter your password"
-          />
-        </UFormGroup>
-
-        <UButton type="submit" label="Login" />
+        </UFormField>
+        <UButton class="mt-3" block label="Submit" type="submit" size="lg" />
       </UForm>
     </div>
   </UContainer>
 </template>
 
 <script setup>
+import { z } from "zod";
 import { reactive } from "vue";
-import { useToast } from "#imports"; // from @nuxt/ui
 
-const state = reactive({
-  email: "",
-  password: "",
+const formInputs = reactive({
+  title: "",
+  body: "",
+  image: null,
 });
 
-// Validation function
-const validate = (state) => {
-  const errors = [];
-  if (!state.email)
-    errors.push({ name: "email", message: "Email is required" });
-  if (!state.password)
-    errors.push({ name: "password", message: "Password is required" });
-  return errors;
-};
+const schema = z.object({
+  title: z.string().min(1, "Title is required"),
+  body: z.string().min(1, "Body is required"),
+  image: z.any().nullable(),
+});
 
-// Toast for feedback
-const toast = useToast();
-
-const onSubmit = async (event) => {
-  toast.add({
-    title: "Success",
-    description: "Form submitted successfully.",
-    color: "success",
-  });
-  console.log("Submitted data:", event.data);
-};
+function submit(event) {
+  console.log(event);
+}
 </script>
 
 <style scoped></style>
