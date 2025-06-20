@@ -21,23 +21,23 @@
   <UContainer class="p-10">
     <div class="w-full mx-auto py-10 rounded-xl bg-gray-100">
       <UForm
-        :schema="schema"
+        :schema="validation"
         class="space-y-3"
         :state="formInputs"
         @submit="submit"
       >
-        <UFormField name="blogTitle" label="Blog Title" size="lg">
+        <UFormField name="title" label="Blog Title" size="lg">
           <UInput class="w-full" v-model="formInputs.title" />
         </UFormField>
-        <UFormField name="blogBody" label="Blog Body" size="lg">
+        <UFormField name="body" label="Blog Body" size="lg">
           <UTextarea class="w-full" v-model="formInputs.body" />
         </UFormField>
-        <UFormField name="blogImg" label="Image" size="lg">
+        <UFormField name="image" label="Image" size="lg">
           <UInput
             type="file"
             accept="image/*"
             class="w-full"
-            v-model="formInputs.image"
+            @change="(e) => (formInputs.image = e.target.files[0])"
           />
         </UFormField>
         <UButton class="mt-3" block label="Submit" type="submit" size="lg" />
@@ -49,7 +49,9 @@
 <script setup>
 import { z } from "zod";
 import { reactive } from "vue";
+import { validation } from "~/schemas/validation";
 
+const router = useRouter();
 const formInputs = reactive({
   title: "",
   body: "",
@@ -57,13 +59,35 @@ const formInputs = reactive({
 });
 
 const schema = z.object({
-  title: z.string().min(1, "Title is required"),
-  body: z.string().min(1, "Body is required"),
+  title: z.string().min(100, "Way too short"),
+  body: z.string().min(50, "Too short"),
   image: z.any().nullable(),
 });
 
-function submit(event) {
-  console.log(event);
+async function submit(event) {
+  const formData = new FormData();
+
+  formData.append("title", formInputs.title);
+  formData.append("body", formInputs.body);
+  if (formInputs.image) {
+    formData.append("image", formInputs.image);
+  }
+  try {
+    const response = await useNuxtApp().$apiFetch("/post", {
+      method: "POST",
+      body: formData,
+    });
+
+    console.log("Submitted:", response);
+
+    formInputs.title = "";
+    formInputs.body = "";
+    formInputs.image = null;
+
+    router.push("/blogs");
+  } catch (error) {
+    console.error("Submission failed:", error);
+  }
 }
 </script>
 

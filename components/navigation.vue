@@ -18,7 +18,7 @@
                 size="lg"
                 class="rounded-full bg-[var(--color-mint)] hover:bg-[var(--color-shadow)] px-6"
                 label="Sign Up"
-                to="auth/login"
+                to="/auth/login"
               />
             </li>
           </ul>
@@ -28,7 +28,7 @@
             size="lg"
             class="rounded-full bg-[var(--color-mint)] hover:bg-[var(--color-shadow)] px-6"
             label="Sign Up"
-            to="auth/login"
+            to="/auth/login"
           />
         </div> -->
       </div>
