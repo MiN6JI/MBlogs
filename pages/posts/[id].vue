@@ -1,6 +1,4 @@
 <template>
-  <pre>{{ post }}</pre>
-
   <UContainer class="p-10">
     <div class="p-10 w-full flex flex-col items-center rounded-xl bg-gray-100">
       <div class="w-[60%]">
@@ -19,9 +17,8 @@
           </div>
 
           <div>
-            <img :src="post.image" alt="blog posts" class="rounded-xl" />
             <img
-              src="https://picsum.photos/1920/768.webp"
+              :src="post.feature_image"
               alt="blog posts"
               class="rounded-xl"
             />

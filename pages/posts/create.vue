@@ -18,6 +18,9 @@
       </div>
     </div>
   </UContainer>
+  <UContainer>
+    <PostEditor />
+  </UContainer>
   <UContainer class="p-10">
     <div class="w-full mx-auto py-10 rounded-xl bg-gray-100">
       <UForm
@@ -37,7 +40,7 @@
             type="file"
             accept="image/*"
             class="w-full"
-            @change="(e) => (formInputs.image = e.target.files[0])"
+            @change="onFileChange"
           />
         </UFormField>
         <UButton class="mt-3" block label="Submit" type="submit" size="lg" />
@@ -64,6 +67,10 @@ const schema = z.object({
   image: z.any().nullable(),
 });
 
+function onFileChange(e) {
+  formInputs.image = e.target.files[0];
+}
+
 async function submit(event) {
   const formData = new FormData();
 
@@ -80,14 +87,18 @@ async function submit(event) {
 
     console.log("Submitted:", response);
 
-    formInputs.title = "";
-    formInputs.body = "";
-    formInputs.image = null;
+    resetForm();
 
     router.push("/blogs");
   } catch (error) {
     console.error("Submission failed:", error);
   }
+}
+
+function resetForm() {
+  formInputs.title = "";
+  formInputs.body = "";
+  formInputs.image = null;
 }
 </script>
 

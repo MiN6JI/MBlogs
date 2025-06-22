@@ -2,7 +2,7 @@
 import { z } from 'zod'
 
 export const validation = z.object({
-  title: z.string().min(30, 'Title must be at least 50 characters long'),
+  title: z.string().min(30, 'Title must be at least 30 characters long'),
   body: z.string().min(1, 'Blog body cannot be empty'),
   image: z
     .instanceof(File)

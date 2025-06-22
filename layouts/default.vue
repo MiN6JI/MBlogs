@@ -1,13 +1,13 @@
 <template>
   <div class="min-h-screen">
     <!-- Layout-level component -->
-    <Navigation />
+    <AppNavigation />
 
     <!-- Where the page content renders -->
     <NuxtPage />
 
     <!-- Footer Components -->
-    <Footer />
+    <AppFooter />
   </div>
 </template>
 F
