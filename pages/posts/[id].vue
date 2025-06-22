@@ -19,11 +19,7 @@
           </div>
 
           <div>
-            <img
-              :src="post.image"
-              alt="blog posts"
-              class="rounded-xl"
-            />
+            <img :src="post.image" alt="blog posts" class="rounded-xl" />
             <img
               src="https://picsum.photos/1920/768.webp"
               alt="blog posts"
@@ -37,27 +33,6 @@
           </div>
         </div>
         <p class="normal-text">{{ post.body }}</p>
-        <!-- <p class="normal-text pt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda,
-          quis dolores quibusdam dicta deserunt architecto explicabo beatae
-          voluptates dolor aut id ipsa nihil magni porro molestiae ex numquam
-          hic modi quasi iste vel? Eligendi, eum iusto veniam dolorem vitae
-          nesciunt voluptates expedita alias in deserunt. Magnam ex tempora
-          explicabo sint. Quod at quasi unde expedita totam reiciendis deleniti
-          possimus tempore enim natus facilis pariatur iure dolore fugit vel
-          culpa magni beatae nulla tempora, minima quis? Velit, dignissimos a,
-          animi pariatur quaerat autem reiciendis ad aut, praesentium suscipit
-          placeat quas dolores accusantium? Cupiditate pariatur laborum illo qui
-          aliquid corporis repudiandae nisi?
-        </p>
-        <p class="pt-4 normal-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa omnis
-          dolore non molestiae? Fugiat quia mollitia ipsam, beatae laudantium
-          deleniti tempore assumenda corporis aperiam blanditiis facilis
-          dolorem, maiores consectetur rerum at aut est eveniet ab iste
-          cupiditate delectus! Perspiciatis explicabo repudiandae at officia
-          cumque voluptatem earum tenetur ab accusamus voluptatibus.
-        </p> -->
       </div>
     </div>
   </UContainer>
@@ -72,7 +47,7 @@
 </template>
 <script setup>
 const route = useRoute();
-const { data: post } = await useFetch(
-  `http://127.0.0.1:8000/api/posts/${route.params.id}`
-);
+const { $apiFetch } = useNuxtApp();
+
+const post = await $apiFetch(`/posts/${route.params.id}`);
 </script>

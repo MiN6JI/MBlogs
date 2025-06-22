@@ -70,7 +70,7 @@ async function submit(event) {
   formData.append("title", formInputs.title);
   formData.append("body", formInputs.body);
   if (formInputs.image) {
-    formData.append("image", formInputs.image);
+    formData.append("feature_image", formInputs.image);
   }
   try {
     const response = await useNuxtApp().$apiFetch("/post", {
