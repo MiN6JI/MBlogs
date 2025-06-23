@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="editor"
-    class="rounded-tr-md rounded-tl-md UButtons flex items-center flex-wrap gap-x-4 border-t-2 border-l-2 border-r-2 border-[#cad5e2] p-4"
+    class="bg-white rounded-tr-md rounded-tl-md UButtons flex items-center flex-wrap gap-x-4 border-t-1 border-l-1 border-r-1 border-[#cad5e2] outline-1 outline-[#dee7f2] p-4"
   >
     <UButton
       color="neutral"
@@ -103,18 +103,43 @@
       class="p-1"
     />
   </section>
-  <editor-content :editor="editor" class="prose"/>
+  <editor-content :editor="editor" class="prose bg-white" />
 </template>
 
 <script setup>
+import { ref, watch } from "vue";
 import { Editor, EditorContent, useEditor } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: "",
+  },
+});
+
+const emit = defineEmits(["update:modelValue"]);
+
+const content = ref(props.modelValue);
+
+watch(content, (val) => {
+  emit("update:modelValue", val);
+});
+
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    if (newVal !== content.value) {
+      content.value = newVal;
+    }
+  }
+);
 
 const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "rounded-br-md rounded-bl-md border border-[var(--color-text)] p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto outline-none",
+        "rounded-br-md rounded-bl-md border border-b-1 border-[#cad5e2] outline-1 outline-[#dee7f2] p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto",
     },
   },
   content: `<p>I'm running Tiptap with Vue.js. 🎉</p>`,
@@ -135,6 +160,9 @@ const editor = useEditor({
       history: true, // Needed for undo/redo
     }),
   ],
+  onUpdate({ editor }) {
+    emit("update:modelValue", editor.getHTML());
+  },
 });
 </script>
 

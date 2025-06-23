@@ -18,22 +18,20 @@
       </div>
     </div>
   </UContainer>
-  <UContainer>
-    <PostEditor />
-  </UContainer>
   <UContainer class="p-10">
     <div class="w-full mx-auto py-10 rounded-xl bg-gray-100">
       <UForm
         :schema="validation"
-        class="space-y-3"
+        class="mx-auto w-[80%] space-y-3"
         :state="formInputs"
-        @submit="submit"
+        @submit.prevent="submit"
       >
         <UFormField name="title" label="Blog Title" size="lg">
           <UInput class="w-full" v-model="formInputs.title" />
         </UFormField>
         <UFormField name="body" label="Blog Body" size="lg">
-          <UTextarea class="w-full" v-model="formInputs.body" />
+          <!-- <UTextarea class="w-full" v-model="formInputs.body" /> -->
+          <PostEditor v-model="formInputs.body" />
         </UFormField>
         <UFormField name="image" label="Image" size="lg">
           <UInput
