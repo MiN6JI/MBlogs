@@ -41,7 +41,15 @@
             @change="onFileChange"
           />
         </UFormField>
-        <UButton class="mt-3" block label="Submit" type="submit" size="lg" />
+        <UButton
+          class="mt-3"
+          block
+          label="Submit"
+          type="submit"
+          size="lg"
+          :loading="loading"
+          loading-icon="svg-spinners:dot-revolve"
+        />
       </UForm>
     </div>
   </UContainer>
@@ -51,6 +59,7 @@
 import { z } from "zod";
 import { reactive } from "vue";
 import { validation } from "~/schemas/validation";
+import { useToast } from "#imports";
 
 const router = useRouter();
 const formInputs = reactive({
@@ -58,6 +67,9 @@ const formInputs = reactive({
   body: "",
   image: null,
 });
+
+const loading = ref(false);
+const toast = useToast();
 
 const schema = z.object({
   title: z.string().min(100, "Way too short"),
@@ -70,6 +82,7 @@ function onFileChange(e) {
 }
 
 async function submit(event) {
+  loading.value = true;
   const formData = new FormData();
 
   formData.append("title", formInputs.title);
@@ -82,14 +95,26 @@ async function submit(event) {
       method: "POST",
       body: formData,
     });
-
-    console.log("Submitted:", response);
+    toast.add({
+      title: "Success",
+      description: "Post created successfully.",
+      icon: "i-heroicons-check-circle",
+      color: "green",
+    });
 
     resetForm();
-
     router.push("/blogs");
+    console.log("Submitted:", response);
   } catch (error) {
+    toast.add({
+      title: "Error",
+      description: "Failed to submit post.",
+      icon: "i-heroicons-x-circle",
+      color: "red",
+    });
     console.error("Submission failed:", error);
+  } finally {
+    loading.value = false;
   }
 }
 
