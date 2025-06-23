@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="editor"
-    class="rounded-tr-md rounded-tl-md UButtons flex items-center flex-wrap gap-x-4 border-t border-l border-r border-[var(--color-text)] p-4"
+    class="rounded-tr-md rounded-tl-md UButtons flex items-center flex-wrap gap-x-4 border-t-2 border-l-2 border-r-2 border-[#cad5e2] p-4"
   >
     <UButton
       color="neutral"
@@ -103,7 +103,7 @@
       class="p-1"
     />
   </section>
-  <editor-content :editor="editor" />
+  <editor-content :editor="editor" class="prose"/>
 </template>
 
 <script setup>
@@ -139,11 +139,32 @@ const editor = useEditor({
 </script>
 
 <style>
-.editor-content ul {
+.tiptap h1 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.tiptap h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.75rem 0;
+}
+
+.tiptap blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 1rem;
+  color: #555;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.tiptap ul {
   list-style-type: disc;
   margin-left: 1.5rem;
 }
-.editor-content ol {
+
+.tiptap ol {
   list-style-type: decimal;
   margin-left: 1.5rem;
 }
