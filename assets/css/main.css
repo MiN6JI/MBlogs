@@ -53,3 +53,58 @@
 .normal-text {
   @apply text-[15px] font-normal leading-[24px];
 }
+
+/* Tailwind Typography */
+.prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-jet);
+  --tw-prose-links: #2563eb;
+  --tw-prose-links-hover: #1d4ed8;
+  --tw-prose-code: #111;
+  --tw-prose-pre-bg: #f3f4f6;
+  --tw-prose-bold: #000;
+  --tw-prose-bullets: var(--color-jet);
+  --tw-prose-quotes: #4b5563;
+  --tw-prose-quote-borders: #d1d5db;
+  --tw-prose-invert-body: #d1d5db;
+  --tw-prose-invert-headings: #fff;
+
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--color-jet);
+}
+
+.prose p {
+  color: var(--tw-prose-body);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  letter-spacing: 0.01em;
+}
+
+.prose a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #2563eb;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+  color: #1d4ed8;
+}
+
+.prose code {
+  background-color: #f3f4f6;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: monospace;
+}

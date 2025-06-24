@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <p class="normal-text prose" v-html="post.body"></p>
+        <div class="prose" v-html="post.body"></div>
       </div>
     </div>
   </UContainer>

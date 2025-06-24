@@ -103,7 +103,7 @@
       class="p-1"
     />
   </section>
-  <editor-content :editor="editor" class="prose bg-white" />
+  <editor-content :editor="editor" class="bg-white" />
 </template>
 
 <script setup>
@@ -139,7 +139,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "rounded-br-md rounded-bl-md border border-b-1 border-[#cad5e2] outline-1 outline-[#dee7f2] p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto",
+        "prose max-w-none rounded-br-md rounded-bl-md border border-b-1 border-[#cad5e2] outline-1 outline-[#dee7f2] p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto",
     },
   },
   content: `<p>I'm running Tiptap with Vue.js. 🎉</p>`,
@@ -166,7 +166,7 @@ const editor = useEditor({
 });
 </script>
 
-<style>
+<style scoped>
 .tiptap h1 {
   font-size: 1.75rem;
   font-weight: bold;
