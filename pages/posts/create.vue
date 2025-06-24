@@ -108,7 +108,7 @@ async function submit(event) {
   } catch (error) {
     toast.add({
       title: "Error",
-      description: "Failed to submit post.",
+      description: "Failed to submit post. Please try again!",
       icon: "i-heroicons-x-circle",
       color: "red",
     });

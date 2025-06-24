@@ -5,7 +5,9 @@
         <div>
           <div class="w-full flex flex-row py-6">
             <div class="w-1/2">
-              <div class="text-gray normal-text">{{ post.created_at }}</div>
+              <div class="text-gray normal-text">
+                {{ format(new Date(post.created_at), "MMMM dd, yyyy") }}
+              </div>
             </div>
             <div class="w-1/2 flex justify-end">
               <div
@@ -23,10 +25,10 @@
               class="rounded-xl"
             />
           </div>
-          <div class="py-2">
-            <div class="sub-heading">
+          <div class="py-2 prose">
+            <h1>
               {{ post.title }}
-            </div>
+            </h1>
           </div>
         </div>
         <div class="prose" v-html="post.body"></div>
@@ -43,6 +45,8 @@
   </UContainer>
 </template>
 <script setup>
+import { format } from "date-fns";
+
 const route = useRoute();
 const { $apiFetch } = useNuxtApp();
 
