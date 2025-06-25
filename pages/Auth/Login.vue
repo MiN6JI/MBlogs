@@ -52,11 +52,29 @@
   </div>
 </template>
 <script setup>
+const { $apiFetch } = useNuxtApp;
+
 definePageMeta({
   layout: "auth",
 });
 
+// const formInputs = ref({
+//   name: "",
+//   email: "",
+//   password: null,
+// });
+
 const email = ref("");
 const show = ref(false);
 const password = ref("");
+
+async function submit() {
+  await $apiFetch("/login", {
+    method: "POST",
+    body: {
+      email: email.value,
+      password: password.value,
+    },
+  });
+}
 </script>
