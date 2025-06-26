@@ -6,8 +6,8 @@
     <!-- Where the page content renders -->
     <UApp>
       <NuxtPage />
-      <UNotifications />
     </UApp>
+    <UNotifications />
     <!-- Footer Components -->
     <AppFooter />
   </div>
