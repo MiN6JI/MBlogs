@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.BASE_URL,
+    },
+  },
   modules: ["@nuxt/ui", "@nuxt/icon"],
   css: ["~/assets/css/main.css"],
   components: [{ path: "~/components", pathPrefix: false }],

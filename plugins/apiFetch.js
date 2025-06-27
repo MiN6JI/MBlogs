@@ -1,8 +1,16 @@
 import { defineNuxtPlugin } from "#app";
+import Cookies from "js-cookie";
 
 export default defineNuxtPlugin(nuxtApp => {
+   const config = useRuntimeConfig()
+
    const apiFetch = $fetch.create({
-      baseURL: 'http://localhost:8000/api',
+      baseURL: config.public.apiBase,
+      credentials: 'include',
+      headers: {
+         Accept: 'application/json',
+         'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+      }
    });
 
    nuxtApp.provide('apiFetch', apiFetch);

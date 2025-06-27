@@ -46,6 +46,8 @@
             type="submit"
             label="Submit"
             :ui="{ base: 'w-full rounded-3xl py-3 px-6' }"
+            :loading="loading"
+            loading-icon="svg-spinners:dot-revolve"
           />
           <!-- to="/auth/register" -->
         </div>
@@ -54,7 +56,12 @@
   </div>
 </template>
 <script setup>
-const { $apiFetch } = useNuxtApp;
+import { useToast } from "#imports";
+import { validation } from "~/schemas/validation";
+const { $apiFetch } = useNuxtApp();
+
+const toast = useToast();
+const loading = ref(false);
 
 definePageMeta({
   layout: "auth",
@@ -65,22 +72,49 @@ const formInputs = reactive({
   password: null,
 });
 
-const email = ref("");
 const show = ref(false);
-const password = ref("");
+
+async function csrf() {
+  return $apiFetch(`sanctum/csrf-cookie`);
+}
 
 async function submit() {
-  const formData = new FormData();
+  loading.value = true;
+  await csrf();
 
+  const formData = new FormData();
   formData.append("email", formInputs.email);
   formData.append("password", formInputs.password);
+
+  const paylaod = {
+    email: formInputs.email,
+    password: formInputs.password,
+  };
   try {
     const response = await useNuxtApp().$apiFetch("/login", {
       method: "POST",
-      body: formData,
+      body: paylaod,
     });
+
+    toast.add({
+      title: "Success",
+      description: "Post created successfully.",
+      icon: "i-heroicons-check-circle",
+      color: "green",
+    });
+
+    window.location.pathname = "/profile";
   } catch (error) {
+    toast.add({
+      title: "Error",
+      description: "Failed to Submit, please try again later!",
+      icon: "i-heroicons-x-circle",
+      color: "red",
+    });
+
     console.error("Submission failed:", error);
+  } finally {
+    loading.value = false;
   }
 }
 </script>
