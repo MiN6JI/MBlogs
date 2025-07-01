@@ -7,7 +7,7 @@ export default defineNuxtConfig({
       apiBase: process.env.BASE_URL,
     },
   },
-  modules: ["@nuxthq/ui", "@nuxt/icon"],
+  modules: ["@nuxt/ui", "@nuxt/icon"],
   css: ["~/assets/css/main.css"],
   components: [{ path: "~/components", pathPrefix: false }],
   appConfig: {
