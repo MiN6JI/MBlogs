@@ -1,4 +1,5 @@
 <template>
+  <pre>{{ posts }}</pre>
   <UContainer class="flex-center">
     <UCard variant="solid" class="bg-[var(--color-text)] py-3 w-[80%]">
       <div class="w-full flex flex-row">
@@ -10,8 +11,8 @@
           />
         </div>
         <div class="w-3/5 flex flex-col justify-center gap-3">
-          <div class="text-4xl font-bold text-white">Shruti</div>
-          <div class="text-white">deorukhkarshruti232@gmail.com</div>
+          <div class="text-4xl font-bold text-white">{{ user.name }}</div>
+          <div class="text-white">{{ user.email }}</div>
         </div>
         <div class="w-1/5 flex-center">
           <UButton label="Create Post" size="xl" to="/posts/create"/>
@@ -39,4 +40,15 @@
     </div>
   </UContainer>
 </template>
-<script setup></script>
+<script setup>
+const {$apiFetch} = useNuxtApp();
+const user = ref([]);
+const posts = ref([]);
+
+onMounted(async() => {
+  const response = await $apiFetch('/api/user')
+  user.value = response
+
+  posts.value = await $apiFetch('api/user/posts')
+})
+</script>
