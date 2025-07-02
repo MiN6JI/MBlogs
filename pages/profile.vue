@@ -1,5 +1,4 @@
 <template>
-  <pre>{{ posts }}</pre>
   <UContainer class="flex-center">
     <UCard variant="solid" class="bg-[var(--color-text)] py-3 w-[80%]">
       <div class="w-full flex flex-row">

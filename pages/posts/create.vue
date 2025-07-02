@@ -30,7 +30,6 @@
           <UInput class="w-full" v-model="formInputs.title" />
         </UFormField>
         <UFormField name="body" label="Blog Body" size="lg">
-          <!-- <UTextarea class="w-full" v-model="formInputs.body" /> -->
           <PostEditor v-model="formInputs.body" />
         </UFormField>
         <UFormField name="image" label="Image" size="lg">
@@ -45,7 +44,7 @@
           class="mt-3"
           block
           label="Submit"
-          type="submit"
+          @click="submit"
           size="lg"
           :loading="loading"
           loading-icon="svg-spinners:dot-revolve"
@@ -71,17 +70,12 @@ const formInputs = reactive({
 const loading = ref(false);
 const toast = useToast();
 
-const schema = z.object({
-  title: z.string().min(100, "Way too short"),
-  body: z.string().min(50, "Too short"),
-  image: z.any().nullable(),
-});
-
 function onFileChange(e) {
   formInputs.image = e.target.files[0];
 }
 
 async function submit(event) {
+  console.log("Click");
   loading.value = true;
   const formData = new FormData();
 
@@ -91,27 +85,30 @@ async function submit(event) {
     formData.append("feature_image", formInputs.image);
   }
   try {
-    const response = await useNuxtApp().$apiFetch("/post", {
+    const response = await useNuxtApp().$apiFetch("/api/post", {
       method: "POST",
       body: formData,
     });
+    
     toast.add({
       title: "Success",
       description: "Post created successfully.",
       icon: "i-heroicons-check-circle",
-      color: "sucess",
+      color: "success",
     });
 
     resetForm();
     router.push("/blogs");
     console.log("Submitted:", response);
   } catch (error) {
+
     toast.add({
       title: "Error",
       description: "Failed to submit post. Please try again!",
       icon: "i-heroicons-x-circle",
       color: "red",
     });
+    
     console.error("Submission failed:", error);
   } finally {
     loading.value = false;

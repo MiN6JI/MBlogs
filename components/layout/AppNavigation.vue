@@ -13,12 +13,18 @@
             <li class="text-font">
               <nuxt-link to="/profile">Profile</nuxt-link>
             </li>
-            <li class="text-font">
+            <li class="text-font flex gap-2">
               <UButton
                 size="lg"
                 class="rounded-full bg-[var(--color-mint)] hover:bg-[var(--color-shadow)] px-6"
                 label="Sign Up"
                 to="/auth/login"
+              />
+              <UButton
+                size="lg"
+                class="rounded-full bg-[var(--color-text)] hover:bg-[var(--color-shadow)] px-6"
+                label="Logout"
+                @click="logout"
               />
             </li>
           </ul>
@@ -37,7 +43,19 @@
 </template>
 
 <script setup>
-// No specific logic yet, could add mobile menu toggle later
+const { $apiFetch } = useNuxtApp();
+
+async function logout() {
+  try {
+    await useNuxtApp().$apiFetch("/logout", {
+      method: "POST",
+    });
+  } catch (error) {
+    console.error("Submission failed:", error);
+  }finally{
+    window.location.pathname = "/";
+  }
+}
 </script>
 
 <style scoped>

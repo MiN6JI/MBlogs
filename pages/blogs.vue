@@ -17,7 +17,7 @@
 const route = useRoute();
 const { $apiFetch } = useNuxtApp();
 
-const posts = await $apiFetch("/posts");
+const posts = await $apiFetch("/api/posts");
 
 // const { data: posts } = await useFetch("/api/posts", {
 //   baseURL: "http://127.0.0.1:8000",

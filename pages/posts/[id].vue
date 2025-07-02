@@ -50,5 +50,5 @@ import { format } from "date-fns";
 const route = useRoute();
 const { $apiFetch } = useNuxtApp();
 
-const post = await $apiFetch(`/posts/${route.params.id}`);
+const post = await $apiFetch(`api/posts/${route.params.id}`);
 </script>
