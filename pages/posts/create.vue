@@ -99,7 +99,7 @@ async function submit(event) {
       title: "Success",
       description: "Post created successfully.",
       icon: "i-heroicons-check-circle",
-      color: "green",
+      color: "sucess",
     });
 
     resetForm();

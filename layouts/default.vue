@@ -4,10 +4,8 @@
     <AppNavigation />
 
     <!-- Where the page content renders -->
-    <UApp>
-      <NuxtPage />
-      <UNotifications />
-    </UApp>
+    <UNotifications />
+    <NuxtPage />
     <!-- Footer Components -->
     <AppFooter />
   </div>
