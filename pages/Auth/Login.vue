@@ -58,6 +58,11 @@
 <script setup>
 import { useToast } from "#imports";
 import { validation } from "~/schemas/validation";
+
+definePageMeta({
+  middleware: ["user"],
+});
+
 const { $apiFetch } = useNuxtApp();
 
 const toast = useToast();

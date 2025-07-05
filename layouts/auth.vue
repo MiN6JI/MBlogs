@@ -3,7 +3,6 @@
     <div class="w-full flex flex-row h-full">
       <UApp>
         <slot />
-        <UNotifications />
       </UApp>
     </div>
   </div>

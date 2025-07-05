@@ -40,6 +40,9 @@
   </UContainer>
 </template>
 <script setup>
+definePageMeta({
+  middleware: ['auth'],
+});
 const {$apiFetch} = useNuxtApp();
 const user = ref([]);
 const posts = ref([]);
