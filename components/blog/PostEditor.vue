@@ -136,13 +136,10 @@ watch(
 );
 
 const editor = useEditor({
-  editorProps: {
-    attributes: {
-      class:
-        "max-w-none rounded-br-md rounded-bl-md border border-b-1 border-[#cad5e2] outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto",
-    },
-  },
   content: `<p>I'm running Tiptap with Vue.js. 🎉</p>`,
+  onUpdate({ editor }) {
+    emit("update:modelValue", editor.getHTML());
+  },
   extensions: [
     StarterKit.configure({
       bulletList: {
@@ -160,8 +157,11 @@ const editor = useEditor({
       history: true, // Needed for undo/redo
     }),
   ],
-  onUpdate({ editor }) {
-    emit("update:modelValue", editor.getHTML());
+  editorProps: {
+    attributes: {
+      class:
+        "max-w-none rounded-br-md rounded-bl-md border border-b-1 border-[#cad5e2] outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto",
+    },
   },
 });
 </script>

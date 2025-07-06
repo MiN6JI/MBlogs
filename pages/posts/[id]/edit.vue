@@ -1,0 +1,148 @@
+<template>
+  <pre>{{ formInputs }}</pre>
+  <UContainer class="flex-center">
+    <div class="w-full flex flex-row">
+      <div class="w-2/4">
+        <div class="sub-heading text-left">
+          Update Your <br />
+          Post
+        </div>
+      </div>
+
+      <div class="w-3/4 flex-center">
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
+          voluptatibus recusandae, eum dolor cum qui perspiciatis voluptas ut
+          autem earum corrupti obcaecati officia consequuntur. Maiores earum
+          voluptates eveniet consectetur nesciunt.
+        </div>
+      </div>
+    </div>
+  </UContainer>
+  <UContainer class="p-10">
+    <div class="w-full mx-auto py-10 rounded-xl bg-gray-100">
+      <UForm
+        :schema="validation"
+        class="mx-auto w-[80%] space-y-3"
+        :state="formInputs"
+        @submit.prevent="submit"
+      >
+        <UFormField name="title" label="Blog Title" size="lg">
+          <UInput class="w-full" v-model="formInputs.title" />
+        </UFormField>
+        <UFormField name="body" label="Blog Body" size="lg">
+          <PostEditor v-model="formInputs.body" />
+        </UFormField>
+        <UFormField name="image" label="Image" size="lg">
+          <img :src="formInputs.image" alt="blog posts" class="rounded-xl w-[200px]" />
+          <!-- <UInput
+            type="file"
+            accept="image/*"
+            class="w-full"
+            @change="onFileChange"
+          /> -->
+        </UFormField>
+        <UButton
+          class="mt-3"
+          block
+          label="Submit"
+          @click="submit"
+          size="lg"
+          :loading="loading"
+          loading-icon="svg-spinners:dot-revolve"
+        />
+      </UForm>
+    </div>
+  </UContainer>
+</template>
+
+<script setup>
+import { z } from "zod";
+import { reactive, onMounted } from "vue";
+import { validation } from "~/schemas/validation";
+import { useToast } from "#imports";
+import { resolveTypeElements } from "vue/compiler-sfc";
+
+definePageMeta({
+  middleware: ["auth"],
+});
+
+const router = useRouter();
+const route = useRoute();
+const { $apiFetch } = useNuxtApp();
+const formInputs = reactive({
+  title: "",
+  body: "",
+  image: null,
+});
+
+const loading = ref(false);
+const toast = useToast();
+const post = ref(null);
+
+onMounted(() => {
+  getFormData();
+});
+
+function onFileChange(e) {
+  formInputs.image = e.target.files[0];
+}
+
+async function getFormData() {
+  try {
+    post.value = await $apiFetch(`api/posts/${route.params.id}`);
+    formInputs.id = post.value.id;
+    formInputs.title = post.value.title;
+    formInputs.body = post.value.body;
+    formInputs.image = post.value.feature_image;
+  } catch (e) {
+    toast.add({ title: "Failed to fetch post", color: "red" });
+  }
+}
+
+async function submit(event) {
+  console.log("Click");
+  loading.value = true;
+  const formData = new FormData();
+
+  formData.append("title", formInputs.title);
+  formData.append("body", formInputs.body);
+  if (formInputs.image) {
+    formData.append("feature_image", formInputs.image);
+  }
+  try {
+    const response = await useNuxtApp().$apiFetch("/api/post", {
+      method: "POST",
+      body: formData,
+    });
+
+    toast.add({
+      title: "Success",
+      description: "Post created successfully.",
+      icon: "i-heroicons-check-circle",
+      color: "success",
+    });
+
+    resetForm();
+    router.push("/blogs");
+    console.log("Submitted:", response);
+  } catch (error) {
+    toast.add({
+      title: "Error",
+      description: "Failed to submit post. Please try again!",
+      icon: "i-heroicons-x-circle",
+      color: "red",
+    });
+
+    console.error("Submission failed:", error);
+  } finally {
+    loading.value = false;
+  }
+}
+
+function resetForm() {
+  formInputs.title = "";
+  formInputs.body = "";
+  formInputs.image = null;
+}
+</script>

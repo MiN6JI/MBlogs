@@ -1,4 +1,5 @@
 <template>
+  <!-- <pre>{{ posts }}</pre> -->
   <UContainer class="flex-center">
     <UCard variant="solid" class="bg-[var(--color-text)] py-3 w-[80%]">
       <div class="w-full flex flex-row">
@@ -28,9 +29,14 @@
         :key="index"
       >
         <div class="w-1/5">
-          <img
+          <!-- <img
             src="https://picsum.photos/1920/1280"
             class="rounded-[10px]"
+            alt="Post Images"
+          /> -->
+          <img
+            :src="post.feature_image"
+            class="rounded-[10px] object-cover"
             alt="Post Images"
           />
         </div>
@@ -53,6 +59,7 @@
             size="md"
             color="primary"
             variant="soft"
+            :to="`/posts/${post.id}`"
           />
           <UButton
             icon="mdi:pencil"
@@ -60,13 +67,15 @@
             size="md"
             color="secondary"
             variant="soft"
-          />
-          <UButton
+            :to="`/posts/${post.id}/edit`"
+            />
+            <UButton
             icon="material-symbols:delete-outline"
             class="p-2 rounded-full"
             size="md"
             color="error"
             variant="soft"
+            :to="`/posts/${post.id}/delete`"
           />
         </div>
       </div>
