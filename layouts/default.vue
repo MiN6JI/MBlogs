@@ -11,4 +11,5 @@
     <AppFooter />
   </div>
 </template>
-F
+<script setup>
+</script>

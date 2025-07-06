@@ -55,6 +55,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: ['auth'],
+});
+
 import { z } from "zod";
 import { reactive } from "vue";
 import { validation } from "~/schemas/validation";
@@ -89,7 +93,7 @@ async function submit(event) {
       method: "POST",
       body: formData,
     });
-    
+
     toast.add({
       title: "Success",
       description: "Post created successfully.",
@@ -101,14 +105,13 @@ async function submit(event) {
     router.push("/blogs");
     console.log("Submitted:", response);
   } catch (error) {
-
     toast.add({
       title: "Error",
       description: "Failed to submit post. Please try again!",
       icon: "i-heroicons-x-circle",
       color: "red",
     });
-    
+
     console.error("Submission failed:", error);
   } finally {
     loading.value = false;

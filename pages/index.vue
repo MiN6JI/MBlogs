@@ -5,7 +5,6 @@
     <CustomPosts />
     <GetStarted />
   </div>
-  <UNotifications />
 </template>
 
 <script setup>

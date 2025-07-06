@@ -59,9 +59,7 @@
                 color="neutral"
                 variant="link"
                 size="md"
-                :icon="
-                  confirmShow ? 'i-lucide-eye' : 'i-lucide-eye-off'
-                "
+                :icon="confirmShow ? 'i-lucide-eye' : 'i-lucide-eye-off'"
                 :aria-pressed="confirmShow"
                 aria-controls="confirm-password"
                 :ui="{ base: 'pr-6' }"
@@ -89,16 +87,17 @@
   </div>
 </template>
 <script setup>
+definePageMeta({
+  layout: "auth",
+  middleware: ["user"],
+});
+
 import { useToast } from "#imports";
 import { validation } from "~/schemas/validation";
 const { $apiFetch } = useNuxtApp();
 
 const toast = useToast();
 const loading = ref(false);
-
-definePageMeta({
-  layout: "auth",
-});
 
 const show = ref(false);
 const confirmShow = ref(false);
@@ -129,17 +128,22 @@ async function submit() {
     password_confirmation: formInputs.password_confirmation,
   };
   try {
-    const response = await useNuxtApp().$apiFetch("/register", {
+    await useNuxtApp().$apiFetch("/register", {
       method: "POST",
       body: payload,
     });
 
     toast.add({
       title: "Success",
-      description: "Post created successfully.",
+      description: "Registration is successfull.",
       icon: "i-heroicons-check-circle",
       color: "green",
     });
+
+    const user = await $apiFetch("api/user");
+
+    const { setUser } = useAuth();
+    setUser(user.name);
 
     window.location.pathname = "/profile";
   } catch (error) {

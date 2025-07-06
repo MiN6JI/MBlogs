@@ -14,7 +14,7 @@
           <div class="text-white">{{ user.email }}</div>
         </div>
         <div class="w-1/5 flex-center">
-          <UButton label="Create Post" size="xl" to="/posts/create"/>
+          <UButton label="Create Post" size="xl" to="/posts/create" />
         </div>
       </div>
     </UCard>
@@ -43,14 +43,15 @@
 definePageMeta({
   middleware: ['auth'],
 });
-const {$apiFetch} = useNuxtApp();
+
+const { $apiFetch } = useNuxtApp();
 const user = ref([]);
 const posts = ref([]);
 
-onMounted(async() => {
-  const response = await $apiFetch('/api/user')
-  user.value = response
+onMounted(async () => {
+  const response = await $apiFetch("/api/user");
+  user.value = response;
 
-  posts.value = await $apiFetch('api/user/posts')
-})
+  posts.value = await $apiFetch("api/user/posts");
+});
 </script>

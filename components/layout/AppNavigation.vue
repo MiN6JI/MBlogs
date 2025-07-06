@@ -26,6 +26,12 @@
                 label="Logout"
                 @click="logout"
               />
+              <UButton
+                size="lg"
+                class="rounded-full bg-[var(--color-text)] hover:bg-[var(--color-shadow)] px-6"
+                label="Register"
+                to="/auth/register"
+              />
             </li>
           </ul>
         </div>
@@ -43,7 +49,10 @@
 </template>
 
 <script setup>
+import Register from '~/pages/auth/register.vue';
+
 const { $apiFetch } = useNuxtApp();
+const { removeUser } = useAuth();
 
 async function logout() {
   try {
@@ -52,7 +61,8 @@ async function logout() {
     });
   } catch (error) {
     console.error("Submission failed:", error);
-  }finally{
+  } finally {
+    removeUser();
     window.location.pathname = "/";
   }
 }

@@ -56,21 +56,18 @@
   </div>
 </template>
 <script setup>
+definePageMeta({
+  layout: "auth",
+  middleware: ['user'],
+});
+
 import { useToast } from "#imports";
 import { validation } from "~/schemas/validation";
-
-definePageMeta({
-  middleware: ["user"],
-});
 
 const { $apiFetch } = useNuxtApp();
 
 const toast = useToast();
 const loading = ref(false);
-
-definePageMeta({
-  layout: "auth",
-});
 
 const formInputs = reactive({
   email: "",
@@ -108,7 +105,12 @@ async function submit() {
       color: "green",
     });
 
-    window.location.pathname = "/profile";
+    const user = await $apiFetch("api/user");
+
+    const { setUser } = useAuth();
+    setUser(user);
+
+    await navigateTo("/profile");
   } catch (error) {
     toast.add({
       title: "Error",
