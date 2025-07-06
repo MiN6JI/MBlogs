@@ -15,18 +15,21 @@
             </li>
             <li class="text-font flex gap-2">
               <UButton
+                v-if="!isLoggedIn"
                 size="lg"
                 class="rounded-full bg-[var(--color-mint)] hover:bg-[var(--color-shadow)] px-6"
                 label="Sign Up"
                 to="/auth/login"
               />
               <UButton
+                v-if="isLoggedIn"
                 size="lg"
                 class="rounded-full bg-[var(--color-text)] hover:bg-[var(--color-shadow)] px-6"
                 label="Logout"
                 @click="logout"
               />
               <UButton
+                v-if="!isLoggedIn"
                 size="lg"
                 class="rounded-full bg-[var(--color-text)] hover:bg-[var(--color-shadow)] px-6"
                 label="Register"
@@ -49,10 +52,8 @@
 </template>
 
 <script setup>
-import Register from '~/pages/auth/register.vue';
-
 const { $apiFetch } = useNuxtApp();
-const { removeUser } = useAuth();
+const { removeUser, isLoggedIn } = useAuth();
 
 async function logout() {
   try {

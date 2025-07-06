@@ -100,7 +100,7 @@ async function submit() {
 
     toast.add({
       title: "Success",
-      description: "Post created successfully.",
+      description: "User Logged in successfully.",
       icon: "i-heroicons-check-circle",
       color: "green",
     });
