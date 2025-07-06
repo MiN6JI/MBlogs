@@ -6,6 +6,11 @@
         class="rounded-[15px]"
         alt="postImage"
       />
+      <!-- <img
+        :src="post.feature_image"
+        class="rounded-[15px] w-full h-[250px] object-cover"
+        alt="postImage"
+      /> -->
     </div>
     <div class="flex flex-col gap-5 pt-4">
       <div class="font-bold" v-if="post">

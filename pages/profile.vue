@@ -4,9 +4,9 @@
       <div class="w-full flex flex-row">
         <div class="w-1/5 flex-center">
           <img
-            src="https://picsum.photos/120/120.webp"
+            src="/public/user.png"
             alt="Profile Images"
-            class="rounded-full"
+            class="w-[100px] h-[100px] object-cover rounded-full"
           />
         </div>
         <div class="w-3/5 flex flex-col justify-center gap-3">
@@ -21,16 +21,60 @@
   </UContainer>
   <UContainer class="bg-gray-100">
     <div class="sub-heading text-center">Your Posts</div>
-    <div class="flex-justify pt-10 gap-6">
-      <div class="w-1/3"><SinglePost /></div>
-      <div class="w-1/3"><SinglePost /></div>
-      <div class="w-1/3"><SinglePost /></div>
+    <div class="bg-white rounded-xl p-10" v-if="posts.length != 0">
+      <div
+        class="flex flex-row w-full gap-6 p-4"
+        v-for="(post, index) in posts"
+        :key="index"
+      >
+        <div class="w-1/5">
+          <img
+            src="https://picsum.photos/1920/1280"
+            class="rounded-[10px]"
+            alt="Post Images"
+          />
+        </div>
+        <div class="w-3/5 flex flex-col gap-4">
+          <div class="text-2xl font-bold">{{ post.title }}</div>
+          <div
+            class="normal-text"
+            v-html="
+              post.body
+                ? post.body.replace(/<[^>]*>/g, '').slice(0, 200) +
+                  (post.body.length > 200 ? '...' : '')
+                : ''
+            "
+          ></div>
+        </div>
+        <div class="w-1/5 flex-center gap-4">
+          <UButton
+            icon="ic:sharp-remove-red-eye"
+            class="p-2 rounded-full"
+            size="md"
+            color="primary"
+            variant="soft"
+          />
+          <UButton
+            icon="mdi:pencil"
+            class="p-2 rounded-full"
+            size="md"
+            color="secondary"
+            variant="soft"
+          />
+          <UButton
+            icon="material-symbols:delete-outline"
+            class="p-2 rounded-full"
+            size="md"
+            color="error"
+            variant="soft"
+          />
+        </div>
+      </div>
     </div>
-  </UContainer>
-  <UContainer class="bg-gray-100">
-    <div class="sub-heading text-center">Your Posts</div>
+    <!-- OR -->
     <div
-      class="bg-white text-center h-screen flex flex-col justify-center gap-4"
+      v-else
+      class="bg-white rounded-xl text-center h-screen flex flex-col justify-center gap-4"
     >
       <div>You haven't created any articles yet.</div>
       <div>
@@ -41,7 +85,7 @@
 </template>
 <script setup>
 definePageMeta({
-  middleware: ['auth'],
+  middleware: ["auth"],
 });
 
 const { $apiFetch } = useNuxtApp();
