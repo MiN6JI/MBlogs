@@ -33,15 +33,23 @@
         <UFormField name="body" label="Blog Body" size="lg">
           <PostEditor v-model="formInputs.body" />
         </UFormField>
-        <UFormField name="image" label="Image" size="lg">
-          <img :src="formInputs.image" alt="blog posts" class="rounded-xl w-[200px]" />
-          <!-- <UInput
+        <UFormField name="image" label="Change Image" size="lg">
+          <UInput
             type="file"
             accept="image/*"
             class="w-full"
             @change="onFileChange"
-          /> -->
+          />
         </UFormField>
+        <!-- <UFormField name="feature-image" label="Current Image" size="lg"> -->
+          <div class="py-2">
+            <img
+              :src="formInputs.feature_image"
+              alt="blog posts"
+              class="rounded-sm w-[150px] h-[100px] object-cover"
+            />
+          </div>
+        <!-- </UFormField> -->
         <UButton
           class="mt-3"
           block
@@ -94,7 +102,7 @@ async function getFormData() {
     formInputs.id = post.value.id;
     formInputs.title = post.value.title;
     formInputs.body = post.value.body;
-    formInputs.image = post.value.feature_image;
+    formInputs.feature_image = post.value.feature_image;
   } catch (e) {
     toast.add({ title: "Failed to fetch post", color: "red" });
   }

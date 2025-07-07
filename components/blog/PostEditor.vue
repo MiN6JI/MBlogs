@@ -108,7 +108,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import { Editor, EditorContent, useEditor } from "@tiptap/vue-3";
+import { EditorContent, useEditor } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 
 const props = defineProps({
@@ -120,23 +120,8 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const content = ref(props.modelValue);
-
-watch(content, (val) => {
-  emit("update:modelValue", val);
-});
-
-watch(
-  () => props.modelValue,
-  (newVal) => {
-    if (newVal !== content.value) {
-      content.value = newVal;
-    }
-  }
-);
-
 const editor = useEditor({
-  content: `<p>I'm running Tiptap with Vue.js. 🎉</p>`,
+  content: props.modelValue,
   onUpdate({ editor }) {
     emit("update:modelValue", editor.getHTML());
   },
@@ -164,6 +149,15 @@ const editor = useEditor({
     },
   },
 });
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (editor.value && val !== editor.value.getHTML()) {
+      editor.value.commands.setContent(val);
+    }
+  }
+);
 </script>
 
 <style scoped>
