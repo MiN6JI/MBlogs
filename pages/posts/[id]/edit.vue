@@ -42,19 +42,19 @@
           />
         </UFormField>
         <!-- <UFormField name="feature-image" label="Current Image" size="lg"> -->
-          <div class="py-2">
-            <img
-              :src="formInputs.feature_image"
-              alt="blog posts"
-              class="rounded-sm w-[150px] h-[100px] object-cover"
-            />
-          </div>
+        <div class="py-2">
+          <img
+            :src="formInputs.feature_image"
+            alt="blog posts"
+            class="rounded-sm w-[150px] h-[100px] object-cover"
+          />
+        </div>
         <!-- </UFormField> -->
         <UButton
           class="mt-3"
           block
           label="Submit"
-          @click="submit"
+          @click.prevent="submit"
           size="lg"
           :loading="loading"
           loading-icon="svg-spinners:dot-revolve"
@@ -118,11 +118,17 @@ async function submit(event) {
   if (formInputs.image) {
     formData.append("feature_image", formInputs.image);
   }
+
+  formData.append("_method", "PATCH");
+
   try {
-    const response = await useNuxtApp().$apiFetch("/api/post", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await useNuxtApp().$apiFetch(
+      `/api/post/${route.params.id}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     toast.add({
       title: "Success",
@@ -132,7 +138,7 @@ async function submit(event) {
     });
 
     resetForm();
-    router.push("/blogs");
+    router.push("/profile");
     console.log("Submitted:", response);
   } catch (error) {
     toast.add({

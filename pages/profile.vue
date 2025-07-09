@@ -68,14 +68,14 @@
             color="secondary"
             variant="soft"
             :to="`/posts/${post.id}/edit`"
-            />
-            <UButton
+          />
+          <UButton
             icon="material-symbols:delete-outline"
             class="p-2 rounded-full"
             size="md"
             color="error"
             variant="soft"
-            :to="`/posts/${post.id}/delete`"
+            @click="deleteItem(post.id)"
           />
         </div>
       </div>
@@ -93,6 +93,12 @@
   </UContainer>
 </template>
 <script setup>
+import { ref } from "vue";
+import { useToast } from "#imports";
+
+const loading = ref(false);
+const toast = useToast();
+
 definePageMeta({
   middleware: ["auth"],
 });
@@ -104,7 +110,52 @@ const posts = ref([]);
 onMounted(async () => {
   const response = await $apiFetch("/api/user");
   user.value = response;
-
-  posts.value = await $apiFetch("api/user/posts");
+  getPosts();
 });
+
+async function getPosts() {
+  try {
+    posts.value = await useNuxtApp().$apiFetch("api/user/posts");
+  } catch (error) {
+    console.error("Failed to fetch posts:", error);
+    toast.add({
+      title: "Error",
+      description: "Unable to load your posts.",
+      color: "red",
+      icon: "i-heroicons-x-circle",
+    });
+  }
+}
+
+// posts.value = await $apiFetch("api/user/posts");
+
+async function deleteItem(id) {
+  loading.value = true;
+
+  try {
+    const response = await useNuxtApp().$apiFetch(`/api/post/${id}`, {
+      method: "DELETE",
+    });
+
+    getPosts();
+
+    toast.add({
+      title: "Success",
+      description: "Post Deleted successfully.",
+      icon: "i-heroicons-check-circle",
+      color: "success",
+    });
+  } catch (error) {
+    toast.add({
+      title: "Error",
+      description: "Failed to submit post. Please try again!",
+      icon: "i-heroicons-x-circle",
+      color: "red",
+    });
+
+    console.error("Submission failed:", error);
+  } finally {
+    loading.value = false;
+  }
+}
 </script>
