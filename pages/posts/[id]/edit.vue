@@ -1,5 +1,4 @@
 <template>
-  <pre>{{ formInputs }}</pre>
   <UContainer class="flex-center">
     <div class="w-full flex flex-row">
       <div class="w-2/4">
