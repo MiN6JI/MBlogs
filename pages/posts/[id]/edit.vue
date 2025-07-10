@@ -97,13 +97,14 @@ function onFileChange(e) {
 
 async function getFormData() {
   try {
-    post.value = await $apiFetch(`api/posts/${route.params.id}`);
+    post.value = await $apiFetch(`api/posts-auth/${route.params.id}`);
     formInputs.id = post.value.id;
     formInputs.title = post.value.title;
     formInputs.body = post.value.body;
     formInputs.feature_image = post.value.feature_image;
   } catch (e) {
-    toast.add({ title: "Failed to fetch post", color: "red" });
+    router.push("/");
+    toast.add({ title: "Unauthorized Action", color: "error" });
   }
 }
 
@@ -140,11 +141,21 @@ async function submit(event) {
     router.push("/profile");
     console.log("Submitted:", response);
   } catch (error) {
+    if (error.response.status === 403) {
+      toast.add({
+        title: "Error",
+        description: "Unauthorized Action",
+        icon: "i-heroicons-x-circle",
+        color: "error",
+      });
+
+      return;
+    }
     toast.add({
       title: "Error",
       description: "Failed to submit post. Please try again!",
       icon: "i-heroicons-x-circle",
-      color: "red",
+      color: "error",
     });
 
     console.error("Submission failed:", error);

@@ -3,8 +3,10 @@
     <header class="w-full z-50">
       <div class="w-full flex flex-row justify-between h-14">
         <div class="flex-center gap-1">
-          <img src="/public/logo.png" alt="MBlogs" width="25" />
-          <div class="font-bold text-2xl leading-7">Blogs</div>
+          <ULink to="/" class="flex-center font-bold text-2xl gap-1 text-[var(--color-jet)]">
+            <img src="/public/logo.png" alt="MBlogs" width="25" />
+            <div class="leading-7">Blogs</div>
+          </ULink>
         </div>
         <div class="flex-center">
           <ul class="flex flex-row justify-center items-center space-x-4">
