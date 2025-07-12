@@ -1,11 +1,9 @@
 <template>
   <div
-    class="flex flex-col gap-6 p-[50px] border-1 bg-snow rounded-3xl border-gray-200"
+    class="rounded-3xl flex flex-col gap-6 p-[50px] bg-white dark:bg-[var(--color-eerie-950)] border-1 border-muted"
   >
-    <div
-      class="p-[15px] bg-[var(--color-mint)] w-18 h-18 flex-center rounded-full"
-    >
-      <Icon :name="icon" class="size-8 text-[var(--color-text)]" />
+    <div class="p-[15px] bg-primary w-18 h-18 flex-center rounded-full">
+      <UIcon name="i-lucide-lightbulb" class="size-8 text-secondary" />
     </div>
     <div class="flex flex-col gap-2">
       <div class="small-heading">{{ title }}</div>

@@ -6,14 +6,78 @@
 
   --breakpoint-3xl: 1920px;
 
-  --color-mint: #60efb8;
-  --color-shadow: #56dba8;
-  --color-willow: #f5faf4;
-  --color-jet: #263238;
-  --color-snow: #fff;
-  --color-mist: #f5f5ff;
-  --color-ash: #fff;
-  --color-text: #212529;
+  /* Beryl Color and the Primary Color is #60efb8 */
+
+  --color-beryl-50: #effef9;
+  --color-beryl-100: #d6fced;
+  --color-beryl-200: #aff9db;
+  --color-beryl-300: #60efb8; /*Primary*/
+  --color-beryl-400: #30e6a3;
+  --color-beryl-500: #00dc8f;
+  --color-beryl-600: #00bb78;
+  --color-beryl-700: #009a63;
+  --color-beryl-800: #007b4f;
+  --color-beryl-900: #025f3d;
+  --color-beryl-950: #013322;
+
+  /* Eerie Color and the primary color is #212529 */
+
+  --color-eerie-50: #f4f4f5;
+  --color-eerie-100: #e2e3e5;
+  --color-eerie-200: #c5c6c9;
+  --color-eerie-300: #9fa1a4;
+  --color-eerie-400: #6f7276;
+  --color-eerie-500: #414549;
+  --color-eerie-600: #2f3235;
+  --color-eerie-700: #26292c;
+  --color-eerie-800: #212529; /*Primary*/
+  --color-eerie-900: #1b1e21;
+  --color-eerie-950: #0f1113;
+}
+
+:root {
+  --ui-primary: var(--color-beryl-300); /* Green Primary */
+  --ui-secondary: var(--color-eerie-800);
+  --ui-bg: #ffffff; /* White background */
+  --ui-bg-muted: var(--color-eerie-50); /* Soft grey */
+  --ui-bg-elevated: var(--color-eerie-50);
+  --ui-bg-accented: var(--color-beryl-50); /* Subtle accent */
+
+  --ui-bg-inverted: var(--color-eerie-800); /* For tooltips or reversed UI */
+
+  --ui-text: var(--color-eerie-800); /* Dark grey text */
+  --ui-text-muted: var(--color-eerie-500);
+  --ui-text-dimmed: var(--color-eerie-400);
+  --ui-text-highlighted: var(--color-beryl-700); /* For important accents */
+
+  --ui-border: var(--color-eerie-200); /* Soft border */
+  --ui-border-muted: var(--color-eerie-100);
+  --ui-border-accented: var(--color-beryl-300);
+  --ui-border-inverted: #ffffff;
+
+  --ui-container: var(--container-6xl);
+}
+
+.dark {
+  --ui-primary: var(--color-beryl-300); /* Softer green */
+  --ui-secondary: var(--color-white);
+  --ui-bg: var(--color-eerie-900); /* Deep black */
+  --ui-bg-muted: var(--color-eerie-900);
+  --ui-bg-elevated: var(--color-eerie-800);
+  --ui-bg-accented: var(--color-eerie-700);
+  --ui-bg-inverted: var(--color-white); /* Used in modals/popups */
+
+  --ui-text: var(--color-eerie-100); /* Almost white */
+  --ui-text-muted: var(--color-eerie-300);
+  --ui-text-dimmed: var(--color-eerie-500);
+  --ui-text-highlighted: var(--color-beryl-300);
+
+  --ui-border: var(--color-eerie-700); /* Medium grey */
+  --ui-border-muted: var(--color-eerie-500);
+  --ui-border-accented: var(--color-beryl-500);
+  --ui-border-inverted: var(--color-white);
+
+  --ui-container: var(--container-6xl);
 }
 
 /* assets/css/main.css */
@@ -43,11 +107,11 @@
 }
 
 .small-heading {
-  @apply text-xl font-semibold leading-[0.2];
+  @apply text-xl font-semibold leading-[0.2] text-secondary;
 }
 
 .sub-heading {
-  @apply text-[46px] tracking-tight font-medium leading-[1.08] text-[var(--color-jet)] py-[30px];
+  @apply text-[46px] tracking-tight font-medium leading-[1.08] py-[30px];
 }
 
 .normal-text {

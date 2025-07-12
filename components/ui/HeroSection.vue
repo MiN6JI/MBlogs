@@ -2,13 +2,12 @@
   <UContainer class="flex-between py-8">
     <div class="w-1/2 flex flex-col justify-center">
       <div
-        class="text-8xl font-medium tracking-tighter leading-[0.9em] text-jet pb-4"
+        class="text-8xl font-medium tracking-tighter leading-[0.9em] pb-4"
       >
-        <!-- Collecting Moments, Not Things —  -->
         One Journey at a Time
       </div>
       <div>
-        <p class="normal-text">
+        <p>
           Dive into a diverse collection of experiences, reflections, and
           practical wisdom — designed to inspire thoughtful living and spark
           your own journey of discovery.
@@ -17,8 +16,10 @@
       <div class="pt-6">
         <UButton
           size="xl"
-          class="rounded-full bg-[var(--color-mint)] hover:bg-[var(--color-shadow)] px-6"
+          color="primary"
+          class="rounded-full px-6"
           label="Get Started"
+          to="/profile"
         />
       </div>
     </div>
