@@ -1,8 +1,11 @@
 <template>
   <div>
-    <HeroSection />
-    <Feature />
-    <CustomPosts />
+    <Banner />
+    <Element />
+    <Articles />
+    <!-- <HeroSection /> -->
+    <!-- <Feature /> -->
+    <!-- <CustomPosts /> -->
     <GetStarted />
   </div>
 </template>

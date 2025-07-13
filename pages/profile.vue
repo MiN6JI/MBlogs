@@ -1,9 +1,8 @@
 <template>
-  <!-- <pre>{{ posts }}</pre> -->
-  <UContainer class="flex-center">
-    <UCard variant="solid" class="bg-[var(--color-text)] py-3 w-[80%]">
+  <UContainer class="flex-col-center gap-6">
+    <UCard variant="solid" class="bg-secondary p-5 rounded-3xl w-full">
       <div class="w-full flex flex-row">
-        <div class="w-1/5 flex-center">
+        <div class="w-1/5 flex-row-center">
           <img
             src="/public/user.png"
             alt="Profile Images"
@@ -14,82 +13,89 @@
           <div class="text-4xl font-bold text-white">{{ user.name }}</div>
           <div class="text-white">{{ user.email }}</div>
         </div>
-        <div class="w-1/5 flex-center">
-          <UButton label="Create Post" size="xl" to="/posts/create" />
+        <div class="w-1/5 flex-row-center">
+          <UButton
+            class="rounded-full px-6"
+            color="primary"
+            label="Create Post"
+            size="xl"
+            to="/posts/create"
+          />
         </div>
       </div>
     </UCard>
-  </UContainer>
-  <UContainer class="bg-gray-100">
-    <div class="sub-heading text-center">Your Posts</div>
-    <div class="bg-white rounded-xl p-10" v-if="posts.length != 0">
+
+    <UCard variant="solid" class="bg-muted rounded-3xl w-full">
+      <div class="text-secondary text-5xl font-bold text-center py-10">
+        Your Posts
+      </div>
+      <div class="bg-elevated rounded-xl overflow-hidden" v-if="posts.length != 0">
+        <div
+          class="flex flex-row w-full gap-6"
+          v-for="(post, index) in posts"
+          :key="index"
+        >
+          <div class="w-2/6">
+            <img
+              :src="post.feature_image"
+              class="w-full h-full object-cover"
+              alt="Post Images"
+            />
+          </div>
+          <div class="w-4/6 flex flex-col justify-center gap-4">
+            <div class="text-secondary text-2xl font-bold">
+              {{ post.title }}
+            </div>
+            <div
+              class="text-sm text-secondary"
+              v-html="
+                post.body
+                  ? post.body.replace(/<[^>]*>/g, '').slice(0, 200) +
+                    (post.body.length > 200 ? '...' : '')
+                  : ''
+              "
+            ></div>
+            <div class="flex flex-row gap-2">
+              <UButton
+                icon="ic:sharp-remove-red-eye"
+                class="text-primary p-2 rounded-md"
+                size="sm"
+                color="primary"
+                variant="outline"
+                :to="`/posts/${post.id}`"
+              />
+              <UButton
+                icon="mdi:pencil"
+                class="p-2 text-secondary rounded-md"
+                size="sm"
+                color="secondary"
+                variant="outline"
+                :to="`/posts/${post.id}/edit`"
+              />
+              <UButton
+                icon="material-symbols:delete-outline"
+                class="p-2 text-error rounded-md"
+                size="sm"
+                color="error"
+                variant="outline"
+                @click="deleteItem(post.id)"
+              />
+            </div>
+          </div>
+          <!-- <div class="w-1/6 flex-row-center gap-4"></div> -->
+        </div>
+      </div>
+      <!-- OR -->
       <div
-        class="flex flex-row w-full gap-6 p-4"
-        v-for="(post, index) in posts"
-        :key="index"
+        v-else
+        class="bg-white rounded-xl text-center h-screen flex flex-col justify-center gap-4"
       >
-        <div class="w-1/5">
-          <!-- <img
-            src="https://picsum.photos/1920/1280"
-            class="rounded-[10px]"
-            alt="Post Images"
-          /> -->
-          <img
-            :src="post.feature_image"
-            class="rounded-[10px] object-cover"
-            alt="Post Images"
-          />
-        </div>
-        <div class="w-3/5 flex flex-col gap-4">
-          <div class="text-2xl font-bold">{{ post.title }}</div>
-          <div
-            class="normal-text"
-            v-html="
-              post.body
-                ? post.body.replace(/<[^>]*>/g, '').slice(0, 200) +
-                  (post.body.length > 200 ? '...' : '')
-                : ''
-            "
-          ></div>
-        </div>
-        <div class="w-1/5 flex-center gap-4">
-          <UButton
-            icon="ic:sharp-remove-red-eye"
-            class="p-2 rounded-full"
-            size="md"
-            color="primary"
-            variant="soft"
-            :to="`/posts/${post.id}`"
-          />
-          <UButton
-            icon="mdi:pencil"
-            class="p-2 rounded-full"
-            size="md"
-            color="secondary"
-            variant="soft"
-            :to="`/posts/${post.id}/edit`"
-          />
-          <UButton
-            icon="material-symbols:delete-outline"
-            class="p-2 rounded-full"
-            size="md"
-            color="error"
-            variant="soft"
-            @click="deleteItem(post.id)"
-          />
+        <div>You haven't created any articles yet.</div>
+        <div>
+          <UButton label="Create Post" to="/posts/create" />
         </div>
       </div>
-    </div>
-    <!-- OR -->
-    <div
-      v-else
-      class="bg-white rounded-xl text-center h-screen flex flex-col justify-center gap-4"
-    >
-      <div>You haven't created any articles yet.</div>
-      <div>
-        <UButton label="Create Post" to="/posts/create" />
-      </div>
-    </div>
+    </UCard>
   </UContainer>
 </template>
 <script setup>

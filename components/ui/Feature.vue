@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-">
+  <div class="bg-muted">
     <UContainer class="py-18 bg-muted">
       <div class="flex flex-col justify-center items-center">
         <div class="sub-heading text-center">

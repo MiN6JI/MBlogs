@@ -2,16 +2,16 @@
   <div class="w-full px-8 pt-3 pb-2 border-b-1 border-muted">
     <header class="w-full z-50">
       <div class="w-full flex flex-row justify-between h-14">
-        <div class="flex-center gap-1">
+        <div class="flex-row-center gap-1">
           <ULink
             to="/"
-            class="flex-center font-bold text-2xl gap-1 text-secondary"
+            class="flex-row-center font-bold text-2xl gap-1 text-secondary"
           >
             <img src="/public/logo.png" alt="MBlogs" width="25" />
             <div class="leading-7 text-secondary">Blogs</div>
           </ULink>
         </div>
-        <div class="flex-center">
+        <div class="flex-row-center">
           <ul class="flex flex-row justify-center items-center space-x-4">
             <li class="text-font"><nuxt-link to="/">Home</nuxt-link></li>
             <li class="text-font"><nuxt-link to="/blogs">Blogs</nuxt-link></li>

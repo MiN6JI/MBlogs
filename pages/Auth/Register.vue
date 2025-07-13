@@ -70,7 +70,8 @@
 
           <UButton
             size="xl"
-            class="mt-4 text-center bg-[var(--color-jet)]"
+            color="secondary"
+            class="mt-4 text-center"
             type="submit"
             label="Submit"
             @click="submit"
@@ -82,8 +83,12 @@
       </UForm>
     </div>
   </div>
-  <div class="w-[50%] bg-[#CFFAEA] flex-center rounded-xl">
-    <img src="/public/Blog Figure 6.png" alt="Auth Image" width="500" />
+  <div class="w-[50%] flex-center rounded-xl">
+    <img
+      src="https://picsum.photos/2000/2000.webp"
+      class="w-full h-full object-cover rounded-3xl"
+      alt="Registration Image"
+    />
   </div>
 </template>
 <script setup>

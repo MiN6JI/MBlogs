@@ -40,8 +40,8 @@
   --ui-secondary: var(--color-eerie-800);
   --ui-bg: #ffffff; /* White background */
   --ui-bg-muted: var(--color-eerie-50); /* Soft grey */
-  --ui-bg-elevated: var(--color-eerie-50);
-  --ui-bg-accented: var(--color-beryl-50); /* Subtle accent */
+  --ui-bg-elevated: var(--color-eerie-100);
+  --ui-bg-accented: var(--color-eerie-300); /* Subtle accent */
 
   --ui-bg-inverted: var(--color-eerie-800); /* For tooltips or reversed UI */
 
@@ -61,7 +61,7 @@
 .dark {
   --ui-primary: var(--color-beryl-300); /* Softer green */
   --ui-secondary: var(--color-white);
-  --ui-bg: var(--color-eerie-900); /* Deep black */
+  --ui-bg: var(--color-eerie-950); /* Deep black */
   --ui-bg-muted: var(--color-eerie-900);
   --ui-bg-elevated: var(--color-eerie-800);
   --ui-bg-accented: var(--color-eerie-700);
@@ -89,7 +89,11 @@
   @apply w-full flex flex-row justify-center;
 }
 
-.flex-center {
+.flex-col-center {
+  @apply flex flex-col justify-center items-center;
+}
+
+.flex-row-center {
   @apply flex flex-row justify-center items-center;
 }
 
@@ -111,7 +115,7 @@
 }
 
 .sub-heading {
-  @apply text-[46px] tracking-tight font-medium leading-[1.08] py-[30px];
+  @apply text-[52px] tracking-normal font-bold leading-[1.08] py-[30px];
 }
 
 .normal-text {
@@ -120,109 +124,98 @@
 
 /* Tailwind Typography */
 .prose {
-  --tw-prose-body: var(--color-text);
-  --tw-prose-headings: var(--color-jet);
-  --tw-prose-links: #2563eb;
-  --tw-prose-links-hover: #1d4ed8;
-  --tw-prose-code: #111;
-  --tw-prose-pre-bg: #f3f4f6;
-  --tw-prose-bold: #000;
-  --tw-prose-bullets: var(--color-jet);
-  --tw-prose-quotes: #4b5563;
-  --tw-prose-quote-borders: #d1d5db;
-  --tw-prose-invert-body: #d1d5db;
-  --tw-prose-invert-headings: #fff;
-
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.75;
+
+  --tw-prose-body: var(--ui-text);
+  --tw-prose-headings: var(--ui-text);
+  --tw-prose-links: var(--color-beryl-500);
+  --tw-prose-links-hover: var(--color-beryl-400);
+  --tw-prose-code: var(--ui-text-muted);
+  --tw-prose-pre-bg: var(--ui-bg-elevated);
+  --tw-prose-bold: var(--ui-text);
+  --tw-prose-bullets: var(--ui-text);
+  --tw-prose-quotes: var(--ui-text-muted);
+  --tw-prose-quote-borders: var(--ui-border-muted);
+  --tw-prose-invert-body: var(--ui-text);
+  --tw-prose-invert-headings: var(--ui-text);
 }
 
 .prose h1,
 .prose h2,
 .prose h3 {
   font-family: var(--font-sans);
-  color: var(--color-jet);
+  color: var(--ui-text);
 }
 
 .prose h1 {
-  @apply text-[46px] tracking-tight font-medium leading-[1.08] text-[var(--color-jet)] pt-[30px];
+  @apply text-[46px] tracking-tight font-medium leading-[1.08] pt-[30px];
+  color: var(--ui-text);
 }
 
 .prose p {
-  color: var(--tw-prose-body);
+  color: var(--ui-text);
   margin: 1.3rem 0rem;
   font-size: 0.9rem;
   line-height: 1.5;
   letter-spacing: 0.008em;
 }
 
-.prose h2 {
-  letter-spacing: -0.03em;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.25;
-}
-
+.prose h2,
 .prose h3 {
   letter-spacing: -0.03em;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
-  font-size: 2.5rem;
   font-weight: 500;
   line-height: 1.25;
+  color: var(--ui-text);
+}
+
+.prose h2 {
+  font-size: 2rem;
+}
+
+.prose h3 {
+  font-size: 2.5rem;
 }
 
 .prose a {
   text-decoration: none;
   font-weight: 500;
-  color: #2563eb;
+  color: var(--tw-prose-links);
 }
 
 .prose a:hover {
   text-decoration: underline;
-  color: #1d4ed8;
+  color: var(--tw-prose-links-hover);
 }
 
 .prose code {
-  background-color: #f3f4f6;
+  background-color: var(--ui-bg-muted);
+  color: var(--ui-text-muted);
   padding: 2px 4px;
   border-radius: 4px;
   font-family: monospace;
 }
 
 .prose blockquote {
-  border-left: 4px solid #ccc;
+  border-left: 4px solid var(--ui-border-muted);
   padding-left: 1rem;
-  color: #555;
+  color: var(--ui-text-muted);
   font-style: italic;
   margin: 1rem 0;
 }
 
-.prose ul {
-  list-style-type: disc;
-  mask-position: inside;
+.prose ul,
+.prose ol {
+  color: var(--ui-text);
   margin-left: 1.25rem;
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
   padding-left: 0;
-  color: var(--tw-prose-body);
   font-size: 0.9rem;
   line-height: 1.8;
-}
-
-.prose ol {
-  list-style-type: decimal;
-  mask-position: inside;
-  margin-left: 1.25rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-  padding-left: 0;
-  color: var(--tw-prose-body);
-  font-size: 0.9rem;
-  line-height: 1.5;
 }
 
 .prose li {
@@ -231,6 +224,6 @@
 }
 
 .prose li::marker {
-  color: var(--color-jet);
+  color: var(--ui-text-muted);
   font-weight: 500;
 }

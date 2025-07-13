@@ -1,6 +1,6 @@
 <template>
   <UContainer class="p-10">
-    <div class="p-10 w-full flex flex-col items-center rounded-xl bg-gray-100">
+    <div class="p-10 w-full flex flex-col items-center rounded-xl bg-muted">
       <div class="w-[60%]">
         <div>
           <div class="w-full flex flex-row py-6">

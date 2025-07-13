@@ -1,8 +1,12 @@
 <template>
-  <div class="w-[50%] bg-[#CFFAEA] flex-center rounded-xl">
-    <img src="/public/Blog Figure 4.png" alt="Auth Image" width="500" />
+  <div class="w-[50%] flex-row-center rounded-xl">
+    <img
+      src="https://picsum.photos/2000/2000.webp"
+      class="w-full h-full object-cover rounded-3xl"
+      alt="Auth Image"
+    />
   </div>
-  <div class="w-[50%] flex-center text-center">
+  <div class="w-[50%] flex-row-center text-center">
     <div class="flex flex-col justify-center p-[50px] gap-2">
       <div class="text-5xl font-bold text-jet">Welcome Back</div>
       <div>
@@ -42,14 +46,14 @@
           </UInput>
           <UButton
             size="xl"
-            class="mt-4 text-center bg-[var(--color-jet)]"
+            color="secondary"
+            class="mt-4 text-center"
             type="submit"
             label="Submit"
             :ui="{ base: 'w-full rounded-3xl py-3 px-6' }"
             :loading="loading"
             loading-icon="svg-spinners:dot-revolve"
           />
-          <!-- to="/auth/register" -->
         </div>
       </UForm>
     </div>
@@ -58,7 +62,7 @@
 <script setup>
 definePageMeta({
   layout: "auth",
-  middleware: ['user'],
+  middleware: ["user"],
 });
 
 import { useToast } from "#imports";
