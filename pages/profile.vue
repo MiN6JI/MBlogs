@@ -1,6 +1,6 @@
 <template>
   <UContainer class="flex-col-center gap-6">
-    <UCard variant="solid" class="bg-secondary p-5 rounded-3xl w-full">
+    <UCard variant="solid" class="bg-secondary dark:bg-accented p-5 rounded-3xl w-full">
       <div class="w-full flex flex-row">
         <div class="w-1/5 flex-row-center">
           <img
@@ -25,11 +25,14 @@
       </div>
     </UCard>
 
-    <UCard variant="solid" class="bg-muted rounded-3xl w-full">
-      <div class="text-secondary text-5xl font-bold text-center py-10">
+    <UCard variant="ghost" class="w-full">
+      <div class="text-secondary text-5xl font-medium text-center py-10">
         Your Posts
       </div>
-      <div class="bg-elevated rounded-xl overflow-hidden" v-if="posts.length != 0">
+      <div
+        class="bg-muted rounded-xl overflow-hidden"
+        v-if="posts.length != 0"
+      >
         <div
           class="flex flex-row w-full gap-6"
           v-for="(post, index) in posts"

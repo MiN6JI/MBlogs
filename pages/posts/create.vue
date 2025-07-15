@@ -19,7 +19,7 @@
     </div>
   </UContainer>
   <UContainer class="p-10">
-    <div class="w-full mx-auto py-10 rounded-xl bg-gray-100">
+    <div class="w-full mx-auto py-10 rounded-xl bg-muted">
       <UForm
         :schema="validation"
         class="mx-auto w-[80%] space-y-3"
@@ -27,17 +27,28 @@
         @submit.prevent="submit"
       >
         <UFormField name="title" label="Blog Title" size="lg">
-          <UInput class="w-full" v-model="formInputs.title" />
+          <UInput
+            color="secondary"
+            variant="outline"
+            highlight
+            class="w-full"
+            v-model="formInputs.title"
+            :ui="{ base: 'text-muted dark:text-white dark:bg-muted' }"
+          />
         </UFormField>
         <UFormField name="body" label="Blog Body" size="lg">
           <PostEditor v-model="formInputs.body" />
         </UFormField>
         <UFormField name="image" label="Image" size="lg">
           <UInput
+            color="neutral"
+            variant="outline"
+            highlight
             type="file"
             accept="image/*"
             class="w-full"
             @change="onFileChange"
+            :ui="{ base: 'text-muted dark:bg-muted' }"
           />
         </UFormField>
         <UButton
@@ -56,7 +67,7 @@
 
 <script setup>
 definePageMeta({
-  middleware: ['auth'],
+  middleware: ["auth"],
 });
 
 import { z } from "zod";

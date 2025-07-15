@@ -10,27 +10,39 @@
       <UForm :state="formInputs" @submit.prevent="submit">
         <div class="flex flex-col gap-4 py-6">
           <UInput
+            color="secondary"
+            variant="outline"
+            highlight
             class="w-full"
             v-model="formInputs.name"
             type="text"
             placeholder="Name"
             size="xl"
-            :ui="{ base: 'w-full rounded-3xl py-3 px-6' }"
+            :ui="{ base: 'w-full rounded-3xl py-3 px-6 text-muted' }"
           />
 
           <UInput
+            color="secondary"
+            variant="outline"
+            highlight
             class="w-full"
             v-model="formInputs.email"
             type="email"
             placeholder="Email"
             size="xl"
-            :ui="{ base: 'w-full rounded-3xl py-3 px-6' }"
+            :ui="{ base: 'w-full rounded-3xl py-3 px-6 text-muted' }"
           />
           <UInput
+            color="secondary"
+            variant="outline"
+            highlight
             v-model="formInputs.password"
             placeholder="Password"
             :type="show ? 'text' : 'password'"
-            :ui="{ trailing: 'pe-1', base: 'w-full rounded-3xl py-3 px-6' }"
+            :ui="{
+              trailing: 'pe-1',
+              base: 'w-full rounded-3xl py-3 px-6 text-muted',
+            }"
             size="xl"
           >
             <template #trailing>
@@ -48,10 +60,16 @@
           </UInput>
 
           <UInput
+            color="secondary"
+            variant="outline"
+            highlight
             v-model="formInputs.password_confirmation"
             placeholder="Confirm Password"
             :type="confirmShow ? 'text' : 'password'"
-            :ui="{ trailing: 'pe-1', base: 'w-full rounded-3xl py-3 px-6' }"
+            :ui="{
+              trailing: 'pe-1',
+              base: 'w-full rounded-3xl py-3 px-6 text-muted',
+            }"
             size="xl"
           >
             <template #trailing>
@@ -70,8 +88,8 @@
 
           <UButton
             size="xl"
-            color="secondary"
-            class="mt-4 text-center"
+            color="primary"
+            class="mt-4 text-center text-secondary"
             type="submit"
             label="Submit"
             @click="submit"
@@ -142,7 +160,7 @@ async function submit() {
       title: "Success",
       description: "Registration is successfull.",
       icon: "i-heroicons-check-circle",
-      color: "green",
+      color: "primary",
     });
 
     const user = await $apiFetch("api/user");
@@ -156,7 +174,7 @@ async function submit() {
       title: "Error",
       description: "Failed to Submit, please try again later!",
       icon: "i-heroicons-x-circle",
-      color: "red",
+      color: "error",
     });
 
     console.error("Submission failed:", error);

@@ -1,4 +1,5 @@
 <template>
+  <!-- <pre>{{ posts.data }}</pre> -->
   <UContainer>
     <div class="w-full flex flex-col gap-12 bg-muted py-12 px-6 rounded-3xl">
       <div class="flex flex-col gap-4">
@@ -15,31 +16,36 @@
       </div>
       <div class="w-full">
         <div class="flex-row-center flex-wrap">
-          <div
-            v-for="post in posts"
-            :key="post.id"
-            class="w-1/3"
-          >
+          <div v-for="post in posts.data" :key="post.id" class="w-1/3">
             <SinglePost :post="post" />
           </div>
         </div>
       </div>
     </div>
   </UContainer>
+  <UContainer class="flex-row-center">
+    <UPagination
+      color="secondary"
+      variant="soft"
+      v-model:page="page"
+      :page-count="Math.ceil(posts.total / posts.per_page)"
+      :total="posts.total"
+    />
+  </UContainer>
 </template>
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, watchEffect } from "vue";
 const route = useRoute();
 const { $apiFetch } = useNuxtApp();
 
-const posts = ref([]);
+const posts = ref({ data: [] });
+const page = ref(1);
+const fetchPosts = async () => {
+  posts.value = await $apiFetch(`/api/posts?page=${page.value}`);
+};
+watchEffect(fetchPosts);
 
 // const posts = await $apiFetch("/api/posts");
-
-onMounted(async () => {
-  const allPosts = await $apiFetch("/api/posts");
-  posts.value = allPosts.slice(0, 6);
-});
 
 // const { data: posts } = await useFetch("/api/posts", {
 //   baseURL: "http://127.0.0.1:8000",

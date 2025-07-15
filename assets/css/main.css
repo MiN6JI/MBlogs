@@ -41,7 +41,7 @@
   --ui-bg: #ffffff; /* White background */
   --ui-bg-muted: var(--color-eerie-50); /* Soft grey */
   --ui-bg-elevated: var(--color-eerie-100);
-  --ui-bg-accented: var(--color-eerie-300); /* Subtle accent */
+  --ui-bg-accented: var(--color-eerie-200); /* Subtle accent */
 
   --ui-bg-inverted: var(--color-eerie-800); /* For tooltips or reversed UI */
 
@@ -50,7 +50,7 @@
   --ui-text-dimmed: var(--color-eerie-400);
   --ui-text-highlighted: var(--color-beryl-700); /* For important accents */
 
-  --ui-border: var(--color-eerie-200); /* Soft border */
+  --ui-border: var(--color-eerie-200);
   --ui-border-muted: var(--color-eerie-100);
   --ui-border-accented: var(--color-beryl-300);
   --ui-border-inverted: #ffffff;
@@ -72,7 +72,7 @@
   --ui-text-dimmed: var(--color-eerie-500);
   --ui-text-highlighted: var(--color-beryl-300);
 
-  --ui-border: var(--color-eerie-700); /* Medium grey */
+  --ui-border: var(--color-eerie-700);
   --ui-border-muted: var(--color-eerie-500);
   --ui-border-accented: var(--color-beryl-500);
   --ui-border-inverted: var(--color-white);
