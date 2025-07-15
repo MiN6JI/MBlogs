@@ -191,6 +191,10 @@
   color: var(--tw-prose-links-hover);
 }
 
+.prose hr{
+  color: var(--color-eerie-200);
+}
+
 .prose code {
   background-color: var(--ui-bg-muted);
   color: var(--ui-text-muted);
@@ -216,6 +220,14 @@
   padding-left: 0;
   font-size: 0.9rem;
   line-height: 1.8;
+}
+
+.prose ul li{
+  list-style: disc;
+}
+
+.prose ol li{
+  list-style: decimal;
 }
 
 .prose li {

@@ -24,7 +24,7 @@
                 size="lg"
                 color="primary"
                 class="rounded-full px-6"
-                label="Sign Up"
+                label="Sign In"
                 to="/auth/login"
               />
               <UButton
@@ -32,7 +32,7 @@
                 size="lg"
                 color="secondary"
                 class="rounded-full px-6"
-                label="Logout"
+                label="Sign Out"
                 @click="logout"
               />
               <UButton
@@ -40,7 +40,7 @@
                 size="lg"
                 color="secondary"
                 class="rounded-full px-6"
-                label="Register"
+                label="Sign Up"
                 to="/auth/register"
               />
             </li>

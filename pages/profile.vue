@@ -91,7 +91,7 @@
       <!-- OR -->
       <div
         v-else
-        class="bg-white rounded-xl text-center h-screen flex flex-col justify-center gap-4"
+        class="bg-muted rounded-2xl text-center h-screen flex flex-col justify-center gap-4"
       >
         <div>You haven't created any articles yet.</div>
         <div>

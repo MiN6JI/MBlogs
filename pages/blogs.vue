@@ -1,5 +1,4 @@
 <template>
-  <!-- <pre>{{ posts.data }}</pre> -->
   <UContainer>
     <div class="w-full flex flex-col gap-12 bg-muted py-12 px-6 rounded-3xl">
       <div class="flex flex-col gap-4">
@@ -15,9 +14,14 @@
         />
       </div>
       <div class="w-full">
-        <div class="flex-row-center flex-wrap">
+        <div class="flex flex-row flex-wrap">
           <div v-for="post in posts.data" :key="post.id" class="w-1/3">
-            <SinglePost :post="post" />
+            <SinglePost
+              :postImage="post.feature_image"
+              :postLink="`/posts/${post.id}`"
+              :postTitle="post.title"
+              :postExcept="createExcerpt(post.body, 100)"
+            />
           </div>
         </div>
       </div>
@@ -37,6 +41,15 @@
 import { onMounted, watchEffect } from "vue";
 const route = useRoute();
 const { $apiFetch } = useNuxtApp();
+
+const createExcerpt = (htmlBody, length = 100) => {
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = htmlBody;
+  const plainText = tempDiv.textContent || tempDiv.innerText || "";
+  return plainText.length > length
+    ? plainText.slice(0, length).trim() + "..."
+    : plainText;
+};
 
 const posts = ref({ data: [] });
 const page = ref(1);

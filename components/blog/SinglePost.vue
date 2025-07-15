@@ -8,25 +8,25 @@
         footer: 'p-4 sm:p-4 bg-elevated',
       }"
     >
-      <img src="https://picsum.photos/1920/1280" alt="postImage" />
+      <img :src="postImage" alt="postImage" />
 
       <template #footer>
         <div class="flex flex-col gap-4">
-          <div class="font-bold leading-1.6" v-if="post">
-            <Nuxt-link :to="`/posts/${post.id}`">{{ post.title }}</Nuxt-link>
+          <div class="text-xl font-bold leading-1.6">
+            <!-- <Nuxt-link :to="`/posts/${post.id}`">{{ post.title }}</Nuxt-link> -->
+            <Nuxt-link :to="postLink">{{ postTitle }}</Nuxt-link>
           </div>
-          <p class="text-xs">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Voluptatibus, voluptates.
-          </p>
+          <p class="text-sm leading-5">{{ postExcept }}</p>
         </div>
       </template>
     </UCard>
   </div>
 </template>
 <script setup>
-const { post } = defineProps({
-  post: Object,
-  required: true,
+defineProps({
+  postImage: String,
+  postTitle: String,
+  postLink: String,
+  postExcept: String,
 });
 </script>

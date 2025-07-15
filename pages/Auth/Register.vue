@@ -133,7 +133,9 @@ const formInputs = reactive({
 });
 
 async function csrf() {
-  return $apiFetch(`sanctum/csrf-cookie`);
+  return $apiFetch(`sanctum/csrf-cookie`, {
+    credentials: "include",
+  });
 }
 
 async function submit() {
