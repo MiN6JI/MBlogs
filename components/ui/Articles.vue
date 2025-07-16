@@ -1,12 +1,12 @@
 <template>
-  <div class="py-18">
+  <div class="pt-18">
     <UContainer class="flex-col-center gap-8">
       <div class="flex flex-col gap-4 text-center">
-        <div class="text-4xl font-medium">Best Choice For Your Business</div>
+        <div class="text-4xl font-medium">Discover Stories Worth Reading</div>
         <p class="w-[60vw]">
-          Gain real-time insights into your payment flows with our intuitive
-          platform. Our advanced tools help you optimize transactions and
-          enhance customer satisfaction.
+          Every blog offers a unique glimpse into someone’s world — a space
+          where thoughts unfold, experiences are shared, and personal stories
+          come to life.
         </p>
       </div>
       <div class="flex-justify pt-6">

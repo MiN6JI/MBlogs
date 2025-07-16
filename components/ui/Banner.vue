@@ -1,11 +1,10 @@
 <template>
-  <UContainer class="h-[80vh] flex-col-center prose">
+  <UContainer class="h-[80vh] flex-col-center">
     <div class="flex flex-col justify-center items-center">
-      <div class="sub-heading text-center">
-        The Ultimate Platform for <br />
-        Smart Bloggers
+      <div class="hero-heading text-center">
+        More Than Words It’s You.
       </div>
-      <p class="normal-text w-2/3 text-center pb-[50px]">
+      <p class="normal-text text-muted w-2/3 text-center pb-[50px]">
         Every step forward begins with a spark of curiosity. This blog is your
         space to explore new ideas, deepen your skills, and reflect on the
         moments that shape both work and life. Let’s grow, one insight at a
