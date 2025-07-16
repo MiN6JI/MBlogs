@@ -9,13 +9,33 @@
           enhance customer satisfaction.
         </p>
       </div>
-      <div class="flex-justify pt-10 gap-6">
-        <div class="w-1/3"><SinglePost /></div>
-        <div class="w-1/3"><SinglePost /></div>
-        <div class="w-1/3"><SinglePost /></div>
+      <div class="flex-justify pt-6">
+        <div
+          v-for="post in posts.data.slice(0, 3)"
+          :key="post.id"
+          class="w-1/3"
+        >
+          <SinglePost
+            :postImage="post.feature_image"
+            :postLink="`/posts/${post.id}`"
+            :postTitle="post.title"
+          />
+          <!-- :postExcept="createExcerpt(post.body, 100)" -->
+        </div>
       </div>
+      <UButton
+        size="lg"
+        color="secondary"
+        class="rounded-full px-6"
+        label="Read More"
+        to="/blogs"
+      />
     </UContainer>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const { $apiFetch } = useNuxtApp();
+
+const posts = await $apiFetch("/api/posts");
+</script>

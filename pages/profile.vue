@@ -30,11 +30,11 @@
         Your Posts
       </div>
       <div
-        class="bg-muted rounded-xl overflow-hidden"
+        class="flex flex-col gap-5"
         v-if="posts.length != 0"
       >
         <div
-          class="flex flex-row w-full gap-6"
+          class="flex flex-row w-full gap-6 bg-muted rounded-xl overflow-hidden"
           v-for="(post, index) in posts"
           :key="index"
         >
