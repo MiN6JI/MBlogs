@@ -1,6 +1,7 @@
 <template>
   <div class="min-h-screen">
     <AppNavigation />
+    <Navbar />
 
     <UApp>
       <NuxtPage />

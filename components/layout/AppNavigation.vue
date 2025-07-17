@@ -1,6 +1,6 @@
 <template>
   <div class="w-full px-8 pt-3 pb-2 border-b-1 border-muted">
-    <header class="w-full z-50">
+    <nav class="w-full z-50">
       <div class="w-full flex flex-row justify-between h-14">
         <div class="flex-row-center gap-1">
           <ULink
@@ -12,13 +12,15 @@
           </ULink>
         </div>
         <div class="flex-row-center">
-          <ul class="flex flex-row justify-center items-center space-x-4">
-            <li class="text-font"><nuxt-link to="/">Home</nuxt-link></li>
-            <li class="text-font"><nuxt-link to="/blogs">Blogs</nuxt-link></li>
-            <li class="text-font">
-              <nuxt-link to="/profile">Profile</nuxt-link>
+          <ul
+            class="hidden lg:flex flex-row justify-center items-center space-x-6 nav-link"
+          >
+            <li><nuxt-link class="hover:text-primary" to="/">Home</nuxt-link></li>
+            <li><nuxt-link class="hover:text-primary" to="/blogs">Blogs</nuxt-link></li>
+            <li>
+              <nuxt-link class="hover:text-primary" to="/profile">Profile</nuxt-link>
             </li>
-            <li class="text-font flex gap-2">
+            <li class="flex gap-2">
               <UButton
                 v-if="!isLoggedIn"
                 size="lg"
@@ -62,7 +64,7 @@
           </ul>
         </div>
       </div>
-    </header>
+    </nav>
   </div>
 </template>
 

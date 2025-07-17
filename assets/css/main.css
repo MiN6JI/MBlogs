@@ -54,7 +54,7 @@ body {
   --ui-text: var(--color-eerie-800);
   --ui-text-muted: var(--color-eerie-500);
   --ui-text-dimmed: var(--color-eerie-400);
-  --ui-text-highlighted: var(--color-beryl-700);
+  --ui-text-highlighted: var(--color-eerie-400);
 
   --ui-border: var(--color-eerie-200);
   --ui-border-muted: var(--color-eerie-100);
@@ -99,4 +99,8 @@ body {
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.03em;
+}
+
+.nav-link{
+  @apply text-sm font-medium text-muted;
 }
