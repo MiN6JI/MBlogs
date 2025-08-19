@@ -1,28 +1,26 @@
 <template>
-  <UContainer class="flex-center">
-    <div class="w-full flex flex-row">
-      <div class="w-2/4">
-        <div class="sub-heading text-left">
-          Update Your <br />
-          Post
-        </div>
-      </div>
+  <UContainer class="flex-center px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-4 text-center">
+      <h2
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-snug"
+      >
+        Edit Your Post
+      </h2>
 
-      <div class="w-3/4 flex-center">
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
-          voluptatibus recusandae, eum dolor cum qui perspiciatis voluptas ut
-          autem earum corrupti obcaecati officia consequuntur. Maiores earum
-          voluptates eveniet consectetur nesciunt.
-        </div>
-      </div>
+      <p
+        class="max-w-[95%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto text-base sm:text-lg text-muted"
+      >
+        Update your blog post and make it even better. Edit the title, refine
+        your content, or upload a new image to give it a fresh look.
+      </p>
     </div>
   </UContainer>
-  <UContainer class="p-10">
-    <div class="w-full mx-auto py-10 rounded-xl bg-muted">
+
+  <UContainer class="px-4 sm:px-6 lg:px-8 py-6">
+    <div class="w-full mx-auto py-8 sm:py-10 rounded-xl bg-muted">
       <UForm
         :schema="validation"
-        class="mx-auto w-[80%] space-y-3"
+        class="mx-auto w-full sm:w-[90%] lg:w-[70%] space-y-4"
         :state="formInputs"
         @submit.prevent="submit"
       >
@@ -36,9 +34,11 @@
             :ui="{ base: 'text-muted dark:text-white dark:bg-muted' }"
           />
         </UFormField>
+
         <UFormField name="body" label="Blog Body" size="lg">
           <PostEditor v-model="formInputs.body" />
         </UFormField>
+
         <UFormField name="image" label="Change Image" size="lg">
           <UInput
             color="secondary"
@@ -51,19 +51,20 @@
             :ui="{ base: 'text-muted dark:text-white dark:bg-muted' }"
           />
         </UFormField>
-        <!-- <UFormField name="feature-image" label="Current Image" size="lg"> -->
-        <div class="py-2">
+
+        <!-- Current image preview -->
+        <div class="py-3 flex justify-center sm:justify-start">
           <img
             :src="formInputs.feature_image"
-            alt="blog posts"
-            class="rounded-sm w-[150px] h-[100px] object-cover"
+            alt="Current blog image"
+            class="rounded-md w-[120px] sm:w-[160px] h-[90px] sm:h-[110px] object-cover shadow"
           />
         </div>
-        <!-- </UFormField> -->
+
         <UButton
           class="mt-3"
           block
-          label="Submit"
+          label="Update Post"
           @click.prevent="submit"
           size="lg"
           :loading="loading"

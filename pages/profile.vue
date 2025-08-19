@@ -1,52 +1,70 @@
 <template>
   <UContainer class="flex-col-center gap-6">
-    <UCard variant="solid" class="bg-secondary dark:bg-accented p-5 rounded-3xl w-full">
-      <div class="w-full flex flex-row">
-        <div class="w-1/5 flex-row-center">
+    <!-- User Profile Card -->
+    <UCard
+      variant="solid"
+      class="bg-muted dark:bg-accented p-5 rounded-3xl w-full"
+    >
+      <div class="w-full flex flex-col md:flex-row items-center gap-6">
+        <!-- Profile Image -->
+        <div class="flex-shrink-0">
           <img
             src="/public/user.png"
-            alt="Profile Images"
-            class="w-[100px] h-[100px] object-cover rounded-full"
+            alt="Profile Image"
+            class="w-20 h-20 sm:w-[100px] sm:h-[100px] object-cover rounded-full"
           />
         </div>
-        <div class="w-3/5 flex flex-col justify-center gap-3">
-          <div class="text-4xl font-bold text-white">{{ user.name }}</div>
-          <div class="text-white">{{ user.email }}</div>
+
+        <!-- User Info -->
+        <div class="flex-1 flex flex-col items-center md:items-start gap-2">
+          <div class="text-2xl sm:text-4xl font-bold text-muted">
+            {{ user.name }}
+          </div>
+          <div class="text-muted text-center md:text-left">
+            {{ user.email }}
+          </div>
         </div>
-        <div class="w-1/5 flex-row-center">
+
+        <!-- Button -->
+        <div>
           <UButton
-            class="rounded-full px-6"
+            class="rounded-full px-6 w-full md:w-auto"
             color="primary"
             label="Create Post"
-            size="xl"
+            size="lg"
             to="/posts/create"
           />
         </div>
       </div>
     </UCard>
 
+    <!-- Posts Section -->
     <UCard variant="ghost" class="w-full">
-      <div class="text-secondary text-5xl font-medium text-center py-10">
+      <div
+        class="text-secondary text-3xl sm:text-5xl font-medium text-center py-10"
+      >
         Your Posts
       </div>
-      <div
-        class="flex flex-col gap-5"
-        v-if="posts.length != 0"
-      >
+
+      <!-- Posts List -->
+      <div class="flex flex-col gap-5" v-if="posts.length != 0">
         <div
-          class="flex flex-row w-full gap-6 bg-muted rounded-xl overflow-hidden"
           v-for="(post, index) in posts"
           :key="index"
+          class="flex flex-col md:flex-row w-full gap-6 bg-muted rounded-xl overflow-hidden"
         >
-          <div class="w-2/6">
+          <!-- Post Image -->
+          <div class="w-full md:w-2/6">
             <img
               :src="post.feature_image"
-              class="w-full h-full object-cover"
-              alt="Post Images"
+              class="w-full h-48 md:h-full object-cover"
+              alt="Post Image"
             />
           </div>
-          <div class="w-4/6 flex flex-col justify-center gap-4">
-            <div class="text-secondary text-2xl font-bold">
+
+          <!-- Post Content -->
+          <div class="w-full md:w-4/6 flex flex-col justify-center gap-4 p-4">
+            <div class="text-secondary text-xl sm:text-2xl font-bold">
               {{ post.title }}
             </div>
             <div
@@ -61,37 +79,37 @@
             <div class="flex flex-row gap-2">
               <UButton
                 icon="ic:sharp-remove-red-eye"
-                class="text-primary p-2 rounded-md"
+                class="p-2 rounded-md"
                 size="sm"
                 color="primary"
-                variant="outline"
+                variant="soft"
                 :to="`/posts/${post.id}`"
               />
               <UButton
                 icon="mdi:pencil"
-                class="p-2 text-secondary rounded-md"
+                class="p-2 rounded-md"
                 size="sm"
                 color="secondary"
-                variant="outline"
+                variant="soft"
                 :to="`/posts/${post.id}/edit`"
               />
               <UButton
                 icon="material-symbols:delete-outline"
-                class="p-2 text-error rounded-md"
+                class="p-2 rounded-md"
                 size="sm"
                 color="error"
-                variant="outline"
+                variant="soft"
                 @click="deleteItem(post.id)"
               />
             </div>
           </div>
-          <!-- <div class="w-1/6 flex-row-center gap-4"></div> -->
         </div>
       </div>
-      <!-- OR -->
+
+      <!-- Empty State -->
       <div
         v-else
-        class="bg-muted rounded-2xl text-center h-screen flex flex-col justify-center gap-4"
+        class="bg-muted rounded-2xl text-center h-64 flex flex-col justify-center gap-4"
       >
         <div>You haven't created any articles yet.</div>
         <div>
@@ -101,6 +119,7 @@
     </UCard>
   </UContainer>
 </template>
+
 <script setup>
 import { ref } from "vue";
 import { useToast } from "#imports";

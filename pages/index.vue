@@ -3,9 +3,6 @@
     <Banner />
     <Element />
     <Articles />
-    <!-- <HeroSection /> -->
-    <!-- <Feature /> -->
-    <!-- <CustomPosts /> -->
     <GetStarted />
   </div>
 </template>

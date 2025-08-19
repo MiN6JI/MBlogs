@@ -1,7 +1,7 @@
 <template>
   <div class="w-[50%] flex-row-center rounded-xl">
     <img
-      src="https://picsum.photos/2000/2000.webp"
+      src="/public//Blogs/Blog 4.webp"
       class="w-full h-full object-cover rounded-3xl"
       alt="Auth Image"
     />

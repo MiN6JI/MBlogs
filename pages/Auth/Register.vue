@@ -103,7 +103,7 @@
   </div>
   <div class="w-[50%] flex-center rounded-xl">
     <img
-      src="https://picsum.photos/2000/2000.webp"
+      src="/public/Blogs/Blog 2.webp"
       class="w-full h-full object-cover rounded-3xl"
       alt="Registration Image"
     />

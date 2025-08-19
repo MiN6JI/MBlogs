@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="editor"
-    class="bg-white dark:bg-muted rounded-tr-md rounded-tl-md UButtons flex items-center flex-wrap gap-x-4 border-t-1 border-l-1 border-r-1 border-muted outline-1 outline-[#dee7f2] p-4"
+    class="bg-white dark:bg-muted rounded-tr-md rounded-tl-md flex items-center flex-wrap gap-x-4 border-t-1 border-l-1 border-r-1 border-muted outline-1 outline-[#dee7f2] p-4"
   >
     <UButton
       color="secondary"
@@ -115,7 +115,7 @@
       class="p-1"
     />
   </section>
-  <editor-content :editor="editor" class="prose bg-white dark:bg-muted" />
+  <editor-content :editor="editor" class="w-full" />
 </template>
 
 <script setup>
@@ -157,7 +157,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "max-w-none rounded-br-md rounded-bl-md border border-b-1 border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto",
+        "prose max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto focus:outline-none",
     },
   },
 });
@@ -173,19 +173,9 @@ watch(
 </script>
 
 <style scoped>
-.tiptap h1 {
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 1rem 0;
-}
 
-.tiptap h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 0.75rem 0;
-}
 
-.tiptap blockquote {
+/* .tiptap blockquote {
   border-left: 4px solid #ccc;
   padding-left: 1rem;
   color: #555;
@@ -201,5 +191,5 @@ watch(
 .tiptap ol {
   list-style-type: decimal;
   margin-left: 1.5rem;
-}
+}  */
 </style>

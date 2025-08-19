@@ -1,27 +1,39 @@
 <template>
-  <div class="p-4">
-    <UCard
-      variant="soft"
-      class="w-full rounded-2xl"
-      :ui="{
-        body: 'p-0 sm:p-0',
-        footer: 'p-4 sm:p-4 bg-elevated',
-      }"
-    >
-      <img :src="postImage" alt="postImage" />
+  <UCard
+    variant="soft"
+    class="w-full rounded-2xl overflow-hidden"
+    :ui="{
+      body: 'p-0 sm:p-0',
+      footer: 'p-4 sm:p-6 bg-elevated',
+    }"
+  >
+    <!-- Responsive Image -->
+    <img
+      :src="postImage"
+      alt="post image"
+      class="w-full h-48 sm:h-64 object-cover"
+    />
 
-      <template #footer>
-        <div class="flex flex-col gap-4">
-          <div class="text-xl font-bold leading-1.6">
-            <!-- <Nuxt-link :to="`/posts/${post.id}`">{{ post.title }}</Nuxt-link> -->
-            <Nuxt-link :to="postLink">{{ postTitle }}</Nuxt-link>
-          </div>
-          <p class="text-sm leading-5">{{ postExcept }}</p>
+    <template #footer>
+      <div class="flex flex-col gap-3">
+        <!-- Title -->
+        <div class="text-lg sm:text-xl font-medium leading-snug line-clamp-2">
+          <Nuxt-link :to="postLink" class="hover:underline">
+            {{ postTitle }}
+          </Nuxt-link>
         </div>
-      </template>
-    </UCard>
-  </div>
+
+        <!-- Excerpt -->
+        <p
+          class="text-sm sm:text-base leading-5 text-muted-foreground line-clamp-3"
+        >
+          {{ postExcept }}
+        </p>
+      </div>
+    </template>
+  </UCard>
 </template>
+
 <script setup>
 defineProps({
   postImage: String,

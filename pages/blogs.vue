@@ -14,8 +14,12 @@
         />
       </div>
       <div class="w-full">
-        <div class="flex flex-row flex-wrap">
-          <div v-for="post in posts.data" :key="post.id" class="w-1/3">
+        <div class="flex flex-row flex-wrap -mx-2">
+          <div
+            v-for="post in posts.data"
+            :key="post.id"
+            class="w-full sm:w-1/2 lg:w-1/3 px-2 mb-6"
+          >
             <SinglePost
               :postImage="post.feature_image"
               :postLink="`/posts/${post.id}`"
@@ -25,16 +29,16 @@
           </div>
         </div>
       </div>
+      <div class="w-full flex-row-center">
+        <UPagination
+          color="secondary"
+          variant="soft"
+          v-model:page="page"
+          :page-count="Math.ceil(posts.total / posts.per_page)"
+          :total="posts.total"
+        />
+      </div>
     </div>
-  </UContainer>
-  <UContainer class="flex-row-center">
-    <UPagination
-      color="secondary"
-      variant="soft"
-      v-model:page="page"
-      :page-count="Math.ceil(posts.total / posts.per_page)"
-      :total="posts.total"
-    />
   </UContainer>
 </template>
 <script setup>

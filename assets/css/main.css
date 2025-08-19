@@ -59,7 +59,7 @@ body {
   --ui-border: var(--color-eerie-200);
   --ui-border-muted: var(--color-eerie-100);
   --ui-border-accented: var(--color-beryl-300);
-  --ui-border-inverted: #ffffff;
+  --ui-border-inverted: #fff;
 
   --ui-container: var(--container-6xl);
 }
@@ -101,6 +101,48 @@ body {
   letter-spacing: -0.03em;
 }
 
-.nav-link{
+.nav-link {
   @apply text-sm font-medium text-muted;
+}
+
+.tiptap h1 {
+  @apply text-3xl font-bold my-4;
+  color: var(--ui-text-muted);
+}
+
+.tiptap h2 {
+  @apply text-2xl font-semibold my-3;
+  color: var(--ui-text-muted);
+}
+
+.tiptap p,
+div {
+  @apply my-3;
+  color: var(--ui-text-muted);
+}
+
+.tiptap blockquote {
+  @apply border-l-4 pl-4 italic my-4;
+  border-color: var(--ui-border);
+  color: var(--ui-text-dimmed);
+}
+
+.tiptap ul {
+  @apply list-disc ml-6;
+  color: var(--ui-text-muted);
+}
+
+.tiptap ol {
+  @apply list-decimal ml-6;
+  color: var(--ui-text-muted);
+}
+
+.tiptap strong {
+  color: var(--ui-text);
+  font-weight: 600; /* or 700 if you want stronger */
+}
+
+.tiptap em {
+  color: var(--ui-text-muted);
+  font-style: italic;
 }

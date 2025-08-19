@@ -1,28 +1,29 @@
 <template>
-  <UContainer class="flex-center">
-    <div class="w-full flex flex-row">
-      <div class="w-2/4">
-        <div class="sub-heading text-left">
-          Compose Your <br />
-          Post
-        </div>
-      </div>
+  <UContainer class="flex-center px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-4 text-center">
+      <!-- Responsive, Bold, Bigger Heading -->
+      <h2
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-snug"
+      >
+        Share Your Thoughts
+      </h2>
 
-      <div class="w-3/4 flex-center">
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
-          voluptatibus recusandae, eum dolor cum qui perspiciatis voluptas ut
-          autem earum corrupti obcaecati officia consequuntur. Maiores earum
-          voluptates eveniet consectetur nesciunt.
-        </div>
-      </div>
+      <!-- Responsive Subtext -->
+      <p
+        class="max-w-[90%] sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto text-muted"
+      >
+        Write your blog post and let your voice be heard. Add a title, craft
+        your content, and upload an image to make your post stand out.
+      </p>
     </div>
   </UContainer>
-  <UContainer class="p-10">
-    <div class="w-full mx-auto py-10 rounded-xl bg-muted">
+
+  <!-- Form Container -->
+  <UContainer class="p-6 sm:p-10">
+    <div class="w-full mx-auto py-8 sm:py-10 rounded-xl bg-muted shadow-md">
       <UForm
         :schema="validation"
-        class="mx-auto w-[80%] space-y-3"
+        class="mx-auto w-[95%] sm:w-[80%] space-y-4"
         :state="formInputs"
         @submit.prevent="submit"
       >
@@ -36,9 +37,11 @@
             :ui="{ base: 'text-muted dark:text-white dark:bg-muted' }"
           />
         </UFormField>
+
         <UFormField name="body" label="Blog Body" size="lg">
           <PostEditor v-model="formInputs.body" />
         </UFormField>
+
         <UFormField name="image" label="Image" size="lg">
           <UInput
             color="neutral"
@@ -51,6 +54,7 @@
             :ui="{ base: 'text-muted dark:bg-muted' }"
           />
         </UFormField>
+
         <UButton
           class="mt-3"
           block
