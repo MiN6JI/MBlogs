@@ -10,7 +10,7 @@
       icon="material-symbols:format-bold"
       @click="editor.chain().focus().toggleBold().run()"
       :disabled="!editor.can().chain().focus().toggleBold().run()"
-      :class="{ 'bg-accented': editor.isActive('bold') }"
+      :class="{ 'bg-active': editor.isActive('bold') }"
       class="p-1"
     />
     <UButton
@@ -157,7 +157,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "prose max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto focus:outline-none",
+        "max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto focus:outline-none",
     },
   },
 });
@@ -173,8 +173,6 @@ watch(
 </script>
 
 <style scoped>
-
-
 /* .tiptap blockquote {
   border-left: 4px solid #ccc;
   padding-left: 1rem;

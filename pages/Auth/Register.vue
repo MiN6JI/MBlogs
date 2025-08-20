@@ -1,112 +1,120 @@
 <template>
-  <div class="w-[50%] flex-center text-center">
-    <div class="w-full flex flex-col justify-center p-[50px] gap-2">
-      <div class="text-5xl font-bold text-jet">Registration</div>
-      <div>
-        <p class="normal-text">
-          Please fill in your details to create an account.
-        </p>
-      </div>
-      <UForm :state="formInputs" @submit.prevent="submit">
-        <div class="flex flex-col gap-4 py-6">
-          <UInput
-            color="secondary"
-            variant="outline"
-            highlight
-            class="w-full"
-            v-model="formInputs.name"
-            type="text"
-            placeholder="Name"
-            size="xl"
-            :ui="{ base: 'w-full rounded-3xl py-3 px-6 text-muted' }"
-          />
-
-          <UInput
-            color="secondary"
-            variant="outline"
-            highlight
-            class="w-full"
-            v-model="formInputs.email"
-            type="email"
-            placeholder="Email"
-            size="xl"
-            :ui="{ base: 'w-full rounded-3xl py-3 px-6 text-muted' }"
-          />
-          <UInput
-            color="secondary"
-            variant="outline"
-            highlight
-            v-model="formInputs.password"
-            placeholder="Password"
-            :type="show ? 'text' : 'password'"
-            :ui="{
-              trailing: 'pe-1',
-              base: 'w-full rounded-3xl py-3 px-6 text-muted',
-            }"
-            size="xl"
-          >
-            <template #trailing>
-              <UButton
-                color="neutral"
-                variant="link"
-                size="md"
-                :icon="show ? 'i-lucide-eye' : 'i-lucide-eye-off'"
-                :aria-pressed="show"
-                aria-controls="password"
-                :ui="{ base: 'pr-6' }"
-                @click="show = !show"
-              />
-            </template>
-          </UInput>
-
-          <UInput
-            color="secondary"
-            variant="outline"
-            highlight
-            v-model="formInputs.password_confirmation"
-            placeholder="Confirm Password"
-            :type="confirmShow ? 'text' : 'password'"
-            :ui="{
-              trailing: 'pe-1',
-              base: 'w-full rounded-3xl py-3 px-6 text-muted',
-            }"
-            size="xl"
-          >
-            <template #trailing>
-              <UButton
-                color="neutral"
-                variant="link"
-                size="md"
-                :icon="confirmShow ? 'i-lucide-eye' : 'i-lucide-eye-off'"
-                :aria-pressed="confirmShow"
-                aria-controls="confirm-password"
-                :ui="{ base: 'pr-6' }"
-                @click="confirmShow = !confirmShow"
-              />
-            </template>
-          </UInput>
-
-          <UButton
-            size="xl"
-            color="primary"
-            class="mt-4 text-center text-secondary"
-            type="submit"
-            label="Submit"
-            @click="submit"
-            :ui="{ base: 'w-full rounded-3xl py-3 px-6' }"
-            :loading="loading"
-            loading-icon="svg-spinners:dot-revolve"
-          />
+  <div class="flex flex-row w-full h-full">
+    <div class="w-full md:w-1/2 flex-row-center text-center">
+      <div class="w-full flex flex-col justify-center p-[50px] gap-2">
+        <div>
+          <div class="text-4xl md:text-5xl font-bold leading-snug">
+            Registration
+          </div>
+          <p class="text-muted max-w-xl">
+            Please fill in your details to create an account.
+          </p>
         </div>
-      </UForm>
+        <UForm :state="formInputs" @submit.prevent="submit">
+          <div class="flex flex-col gap-4 py-6">
+            <UInput
+              color="secondary"
+              variant="outline"
+              highlight
+              class="w-full"
+              v-model="formInputs.name"
+              type="text"
+              placeholder="Name"
+              size="xl"
+              :ui="{ base: 'w-full rounded-3xl py-3 px-6 text-muted' }"
+            />
+
+            <UInput
+              color="secondary"
+              variant="outline"
+              highlight
+              class="w-full"
+              v-model="formInputs.email"
+              type="email"
+              placeholder="Email"
+              size="xl"
+              :ui="{ base: 'w-full rounded-3xl py-3 px-6 text-muted' }"
+            />
+            <UInput
+              color="secondary"
+              variant="outline"
+              highlight
+              v-model="formInputs.password"
+              placeholder="Password"
+              :type="show ? 'text' : 'password'"
+              :ui="{
+                trailing: 'pe-1',
+                base: 'w-full rounded-3xl py-3 px-6 text-muted',
+              }"
+              size="xl"
+            >
+              <template #trailing>
+                <UButton
+                  color="neutral"
+                  variant="link"
+                  size="md"
+                  :icon="show ? 'i-lucide-eye' : 'i-lucide-eye-off'"
+                  :aria-pressed="show"
+                  aria-controls="password"
+                  :ui="{ base: 'pr-6' }"
+                  @click="show = !show"
+                />
+              </template>
+            </UInput>
+
+            <UInput
+              color="secondary"
+              variant="outline"
+              highlight
+              v-model="formInputs.password_confirmation"
+              placeholder="Confirm Password"
+              :type="confirmShow ? 'text' : 'password'"
+              :ui="{
+                trailing: 'pe-1',
+                base: 'w-full rounded-3xl py-3 px-6 text-muted',
+              }"
+              size="xl"
+            >
+              <template #trailing>
+                <UButton
+                  color="neutral"
+                  variant="link"
+                  size="md"
+                  :icon="confirmShow ? 'i-lucide-eye' : 'i-lucide-eye-off'"
+                  :aria-pressed="confirmShow"
+                  aria-controls="confirm-password"
+                  :ui="{ base: 'pr-6' }"
+                  @click="confirmShow = !confirmShow"
+                />
+              </template>
+            </UInput>
+
+            <UButton
+              size="xl"
+              color="primary"
+              class="mt-4 text-center text-secondary"
+              type="submit"
+              label="Submit"
+              @click="submit"
+              :ui="{
+                base: 'text-muted dark:text-[var(--color-eerie-600)] w-full rounded-3xl py-3 px-6',
+              }"
+              :loading="loading"
+              loading-icon="svg-spinners:dot-revolve"
+            />
+          </div>
+        </UForm>
+      </div>
     </div>
-  </div>
-  <div class="w-[50%] flex-center rounded-xl">
-    <img
-      src="/public/Blogs/Blog 2.webp"
-      class="w-full h-full object-cover rounded-3xl"
-      alt="Registration Image"
-    />
+    <div
+      class="w-full md:w-1/2 hidden md:flex items-center justify-center rounded-xl"
+    >
+      <img
+        src="/public/Blogs/Blog 2.webp"
+        class="w-full h-full object-cover rounded-3xl"
+        alt="Registration Image"
+      />
+    </div>
   </div>
 </template>
 <script setup>

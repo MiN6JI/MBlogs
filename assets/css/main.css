@@ -115,8 +115,7 @@ body {
   color: var(--ui-text-muted);
 }
 
-.tiptap p,
-div {
+.tiptap p {
   @apply my-3;
   color: var(--ui-text-muted);
 }

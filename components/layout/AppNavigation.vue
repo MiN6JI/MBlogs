@@ -34,7 +34,7 @@
               >Profile</ULink
             >
           </li>
-          <!-- <li class="flex gap-2">
+          <li class="flex gap-2">
             <UButton
               v-if="!isLoggedIn"
               size="sm"
@@ -59,7 +59,7 @@
               label="Sign Up"
               to="/auth/register"
             />
-          </li> -->
+          </li>
         </ul>
 
         <!-- Right Side Buttons (Theme toggle + Mobile Menu) -->
