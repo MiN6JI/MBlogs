@@ -1,7 +1,7 @@
 <template>
   <UContainer>
     <div
-      class="max-w-full h-auto md:h-[80vh] rounded-3xl bg-muted flex flex-col md:flex-row gap-8 md:gap-10 py-6 px-4 md:p-8"
+      class="max-w-full h-auto md:h-[80vh] lg:h-[60vh] rounded-3xl bg-muted flex flex-col md:flex-row gap-8 md:gap-10 py-6 px-4 md:p-8"
     >
       <!-- Image Section -->
       <div class="w-full md:w-1/2">
