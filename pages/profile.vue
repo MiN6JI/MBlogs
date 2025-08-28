@@ -64,7 +64,7 @@
 
           <!-- Post Content -->
           <div class="w-full md:w-4/6 flex flex-col justify-center gap-4 p-4">
-            <div class="text-secondary text-xl sm:text-2xl font-bold">
+            <div class="text-secondary text-xl sm:text-2xl font-medium">
               {{ post.title }}
             </div>
             <div

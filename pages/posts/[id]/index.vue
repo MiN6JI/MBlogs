@@ -47,6 +47,13 @@
           class="dark:text-muted max-w-none py-6 tiptap"
           v-html="post.body"
         ></div>
+
+        <div>
+          <hr />
+          <div class="py-4">
+            <div class="text-muted">Written By <span class="italic font-medium dark:text-white">Shruti Deorukhkar</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </UContainer>
@@ -77,7 +84,6 @@
           :postImage="post.feature_image"
           :postLink="`/posts/${post.id}`"
           :postTitle="post.title"
-          :postExcept="createExcerpt(post.body, 100)"
         />
       </div>
     </div>
@@ -94,13 +100,4 @@ const { $apiFetch } = useNuxtApp();
 const post = await $apiFetch(`api/posts/${route.params.id}`);
 
 const otherPosts = await $apiFetch("/api/posts");
-
-const createExcerpt = (htmlBody, length = 100) => {
-  const tempDiv = document.createElement("div");
-  tempDiv.innerHTML = htmlBody;
-  const plainText = tempDiv.textContent || tempDiv.innerText || "";
-  return plainText.length > length
-    ? plainText.slice(0, length).trim() + "..."
-    : plainText;
-};
 </script>

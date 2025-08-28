@@ -55,6 +55,18 @@
           />
         </UFormField>
 
+        <UFormField name="Tag" label="Blog Related To" size="lg">
+          <UInput
+            color="neutral"
+            variant="outline"
+            highlight
+            type="text"
+            class="w-full"
+            v-model="formInputs.tag"
+            :ui="{ base: 'text-muted dark:bg-muted' }"
+          />
+        </UFormField>
+
         <UButton
           class="mt-3"
           block
@@ -84,6 +96,7 @@ const formInputs = reactive({
   title: "",
   body: "",
   image: null,
+  tag: "",
 });
 
 const loading = ref(false);
@@ -100,6 +113,7 @@ async function submit(event) {
 
   formData.append("title", formInputs.title);
   formData.append("body", formInputs.body);
+  formData.append("tag", formInputs.tag);
   if (formInputs.image) {
     formData.append("feature_image", formInputs.image);
   }
