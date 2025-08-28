@@ -16,9 +16,9 @@
             </div>
             <div class="w-full md:w-1/2 flex md:justify-end">
               <div
-                class="inline text-xs font-medium py-1 px-4 rounded-2xl bg-[var(--color-mint)]"
+                class="border text-highlighted inline text-xs font-medium py-1 px-3 rounded-2xl"
               >
-                Blog Tags
+                {{ post.tag }}
               </div>
             </div>
           </div>
@@ -49,9 +49,14 @@
         ></div>
 
         <div>
-          <hr />
-          <div class="py-4">
-            <div class="text-muted">Written By <span class="italic font-medium dark:text-white">Shruti Deorukhkar</span></div>
+          <hr class="border border-muted" />
+          <div class="flex flex-col gap-3 py-4">
+            <div class="text-muted">Written By</div>
+            <div>
+              <span class="italic font-medium dark:text-white"
+                >Shruti Deorukhkar</span
+              >
+            </div>
           </div>
         </div>
       </div>

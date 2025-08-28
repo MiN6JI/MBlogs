@@ -34,7 +34,7 @@
             highlight
             class="w-full"
             v-model="formInputs.title"
-            :ui="{ base: 'text-muted dark:text-white dark:bg-muted' }"
+            :ui="{ base: 'text-muted dark:bg-muted' }"
           />
         </UFormField>
 
