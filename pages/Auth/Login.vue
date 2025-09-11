@@ -101,6 +101,7 @@ const show = ref(false);
 async function csrf() {
   return $apiFetch(`sanctum/csrf-cookie`, {
     credentials: "include",
+    withCredentials: true,
   });
 }
 
@@ -120,6 +121,7 @@ async function submit() {
     const response = await useNuxtApp().$apiFetch("/login", {
       method: "POST",
       body: paylaod,
+      credentials: "include",
     });
 
     toast.add({
