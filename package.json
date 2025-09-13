@@ -23,5 +23,9 @@
     "vue": "^3.5.14",
     "vue-router": "^4.5.1",
     "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@iconify-json/ic": "^1.2.4",
+    "@iconify-json/material-symbols": "^1.2.34"
   }
 }
