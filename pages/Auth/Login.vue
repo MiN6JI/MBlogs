@@ -85,6 +85,7 @@ definePageMeta({
 
 import { useToast } from "#imports";
 import { validation } from "~/schemas/validation";
+import Cookies from "js-cookie";
 
 const { $apiFetch } = useNuxtApp();
 
