@@ -101,7 +101,6 @@ const show = ref(false);
 async function csrf() {
   return $apiFetch(`sanctum/csrf-cookie`, {
     credentials: "include",
-    withCredentials: true,
   });
 }
 
@@ -122,6 +121,10 @@ async function submit() {
       method: "POST",
       body: paylaod,
       credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+      },
     });
 
     toast.add({
