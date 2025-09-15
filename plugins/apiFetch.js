@@ -7,11 +7,12 @@ export default defineNuxtPlugin(nuxtApp => {
    const apiFetch = $fetch.create({
       baseURL: config.public.apiBase,
       credentials: 'include',
+      withXSRFToken: true,
       headers: {
          Accept: 'application/json',
          'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
       }
    });
 
-   nuxtApp.provide('apiFetch', apiFetch);
+   nuxtApp.provide('apiFetch', apiFetch);
 });
