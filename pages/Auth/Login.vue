@@ -107,25 +107,23 @@ async function csrf() {
 
 async function submit() {
   loading.value = true;
-  await csrf();
 
   const formData = new FormData();
   formData.append("email", formInputs.email);
   formData.append("password", formInputs.password);
 
-  const paylaod = {
+  const payload = {
     email: formInputs.email,
     password: formInputs.password,
   };
+
+  await csrf();
+
   try {
     const response = await useNuxtApp().$apiFetch("/login", {
       method: "POST",
-      body: paylaod,
+      body: payload,
       credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
-      },
     });
 
     toast.add({
@@ -148,7 +146,6 @@ async function submit() {
       icon: "i-heroicons-x-circle",
       color: "error",
     });
-
     console.error("Submission failed:", error);
   } finally {
     loading.value = false;
