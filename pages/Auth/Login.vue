@@ -102,6 +102,7 @@ const show = ref(false);
 async function csrf() {
   return $apiFetch(`sanctum/csrf-cookie`, {
     credentials: "include",
+    withCredentials: true,
   });
 }
 
@@ -117,23 +118,18 @@ async function submit() {
     password: formInputs.password,
   };
 
-  await csrf();
-
   try {
-    const response = await useNuxtApp().$apiFetch(
-      "/login",
-      {
-        method: "POST",
-        body: payload,
+    await csrf();
+
+    const response = await useNuxtApp().$apiFetch("/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        accept: "application/json",
+        "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
       },
-      {
-        headers: {
-          accept: "application/json",
-          "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
-        },
-        withCredentials: true,
-      }
-    );
+      body: payload,
+    });
 
     toast.add({
       title: "Success",
@@ -142,7 +138,9 @@ async function submit() {
       color: "primary",
     });
 
-    const user = await $apiFetch("api/user");
+    const user = await $apiFetch("api/user", {
+      credentials: "include",
+    });
 
     const { setUser } = useAuth();
     setUser(user);
