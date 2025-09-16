@@ -120,11 +120,20 @@ async function submit() {
   await csrf();
 
   try {
-    const response = await useNuxtApp().$apiFetch("/login", {
-      method: "POST",
-      body: payload,
-      credentials: "include",
-    });
+    const response = await useNuxtApp().$apiFetch(
+      "/login",
+      {
+        method: "POST",
+        body: payload,
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+        },
+        withCredentials: true,
+      }
+    );
 
     toast.add({
       title: "Success",
