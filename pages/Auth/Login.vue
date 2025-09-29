@@ -102,9 +102,14 @@ const formInputs = reactive({
 const show = ref(false);
 
 async function csrf() {
-  return $apiFetch(`sanctum/csrf-cookie`, {
+  await $apiFetch("/sanctum/csrf-cookie", {
     credentials: "include",
+    withCredentials: true,
   });
+
+  const token = Cookies.get("XSRF-TOKEN");
+  console.log("CSRF Token after fetching cookie:", token);
+  return token;
 }
 
 async function submit() {
@@ -120,14 +125,14 @@ async function submit() {
   };
 
   try {
-    await csrf();
-
+    const token = await csrf();
+    
     const response = await useNuxtApp().$apiFetch("/login", {
       method: "POST",
       credentials: "include",
       headers: {
         Accept: "application/json",
-        "X-XSRF-TOKEN": csrfToken,
+        "X-XSRF-TOKEN": token,
       },
       body: payload,
     });
