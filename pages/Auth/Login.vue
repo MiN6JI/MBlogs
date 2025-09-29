@@ -89,6 +89,8 @@ import Cookies from "js-cookie";
 
 const { $apiFetch } = useNuxtApp();
 
+const csrfToken = Cookies.get("XSRF-TOKEN");
+
 const toast = useToast();
 const loading = ref(false);
 
@@ -102,7 +104,6 @@ const show = ref(false);
 async function csrf() {
   return $apiFetch(`sanctum/csrf-cookie`, {
     credentials: "include",
-    withCredentials: true,
   });
 }
 
@@ -125,8 +126,8 @@ async function submit() {
       method: "POST",
       credentials: "include",
       headers: {
-        accept: "application/json",
-        "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
+        Accept: "application/json",
+        "X-XSRF-TOKEN": csrfToken,
       },
       body: payload,
     });
