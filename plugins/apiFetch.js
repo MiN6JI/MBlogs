@@ -10,7 +10,7 @@ export default defineNuxtPlugin(nuxtApp => {
       withXSRFToken: true,
       headers: {
          Accept: 'application/json',
-         'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+         'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN') || '',
       }
    });
 
