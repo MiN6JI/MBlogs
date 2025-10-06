@@ -16,10 +16,10 @@ export default defineNuxtPlugin((nuxtApp) => {
         }
 
         // Optional: if you use Sanctum
-        const xsrf = Cookies.get('XSRF-TOKEN')
-        if (xsrf) {
-            request.headers['X-XSRF-TOKEN'] = xsrf
-        }
+        // const xsrf = Cookies.get('XSRF-TOKEN')
+        // if (xsrf) {
+        //     request.headers['X-XSRF-TOKEN'] = xsrf
+        // }
 
         return request
     })
