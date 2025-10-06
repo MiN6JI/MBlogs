@@ -85,7 +85,6 @@ definePageMeta({
 
 import { useToast } from "#imports";
 import { validation } from "~/schemas/validation";
-const { $axios } = useNuxtApp();
 
 const { $apiFetch } = useNuxtApp();
 
@@ -102,44 +101,44 @@ const show = ref(false);
 async function submit() {
   loading.value = true;
 
+  const formData = new FormData();
+  formData.append("email", formInputs.email);
+  formData.append("password", formInputs.password);
+
   const payload = {
     email: formInputs.email,
     password: formInputs.password,
   };
 
   try {
-    // 🔹 Step 1: Login
-    const response = await $axios.post("/api/login", payload);
-
-    // 🔹 Step 2: Save token
-    const token = response.data.token;
-    localStorage.setItem("auth_token", token);
-
-    // 🔹 Step 3: Get user info
-    const userRes = await $axios.get("/api/user", {
-      headers: { Authorization: `Bearer ${token}` },
+    const response = await useNuxtApp().$apiFetch("/login", {
+      method: "POST",
+      body: payload,
     });
 
-    const { setUser } = useAuth();
-    setUser(userRes.data);
-
-    // 🔹 Step 4: Toast + Redirect
     toast.add({
       title: "Success",
-      description: "Logged in successfully!",
+      description: "User Logged in successfully.",
       icon: "i-heroicons-check-circle",
       color: "primary",
     });
 
+    const user = await $apiFetch("api/user", {
+      credentials: "include",
+    });
+
+    const { setUser } = useAuth();
+    setUser(user);
+
     await navigateTo("/profile");
   } catch (error) {
-    console.error("Login failed:", error.response?.data || error.message);
     toast.add({
       title: "Error",
-      description: error.response?.data?.message || "Invalid credentials.",
+      description: "Failed to Submit, please try again later!",
       icon: "i-heroicons-x-circle",
       color: "error",
     });
+    console.error("Submission failed:", error);
   } finally {
     loading.value = false;
   }

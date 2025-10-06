@@ -123,6 +123,7 @@
 <script setup>
 import { ref } from "vue";
 import { useToast } from "#imports";
+const { $axios } = useNuxtApp();
 
 const loading = ref(false);
 const toast = useToast();
@@ -136,14 +137,17 @@ const user = ref([]);
 const posts = ref([]);
 
 onMounted(async () => {
-  const response = await $apiFetch("/api/user");
-  user.value = response;
+  const response = await $axios.get("/api/user");
+
+  user.value = response.data;
   getPosts();
 });
 
 async function getPosts() {
   try {
-    posts.value = await useNuxtApp().$apiFetch("api/user/posts");
+    const response = await $axios.get("api/user/posts");
+
+    posts.value = response.data;
   } catch (error) {
     console.error("Failed to fetch posts:", error);
     toast.add({
@@ -161,7 +165,7 @@ async function deleteItem(id) {
   loading.value = true;
 
   try {
-    const response = await useNuxtApp().$apiFetch(`/api/post/${id}`, {
+    const response = await $axios.delete(`/api/post/${id}`, {
       method: "DELETE",
     });
 

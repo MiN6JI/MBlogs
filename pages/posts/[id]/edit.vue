@@ -81,6 +81,7 @@ import { reactive, onMounted } from "vue";
 import { validation } from "~/schemas/validation";
 import { useToast } from "#imports";
 import { resolveTypeElements } from "vue/compiler-sfc";
+const { $axios } = useNuxtApp();
 
 definePageMeta({
   middleware: ["auth"],
@@ -109,7 +110,8 @@ function onFileChange(e) {
 
 async function getFormData() {
   try {
-    post.value = await $apiFetch(`api/posts-auth/${route.params.id}`);
+    const response = await $axios.get(`api/posts-auth/${route.params.id}`);
+    post.value = response.data;
     formInputs.id = post.value.id;
     formInputs.title = post.value.title;
     formInputs.body = post.value.body;
@@ -123,46 +125,39 @@ async function getFormData() {
 async function submit(event) {
   console.log("Click");
   loading.value = true;
-  const formData = new FormData();
 
+  const formData = new FormData();
   formData.append("title", formInputs.title);
   formData.append("body", formInputs.body);
-  if (formInputs.image) {
-    formData.append("feature_image", formInputs.image);
-  }
-
-  formData.append("_method", "PATCH");
+  if (formInputs.image) formData.append("feature_image", formInputs.image);
 
   try {
-    const response = await useNuxtApp().$apiFetch(
+    const response = await $axios.patch(
       `/api/post/${route.params.id}`,
-      {
-        method: "POST",
-        body: formData,
-      }
+      formData
     );
 
     toast.add({
       title: "Success",
-      description: "Post created successfully.",
+      description: "Post updated successfully.",
       icon: "i-heroicons-check-circle",
       color: "success",
     });
 
     resetForm();
     router.push("/profile");
-    console.log("Submitted:", response);
+    console.log("Submitted:", response.data);
   } catch (error) {
-    if (error.response.status === 403) {
+    if (error.response?.status === 403) {
       toast.add({
         title: "Error",
         description: "Unauthorized Action",
         icon: "i-heroicons-x-circle",
         color: "error",
       });
-
       return;
     }
+
     toast.add({
       title: "Error",
       description: "Failed to submit post. Please try again!",
@@ -170,7 +165,7 @@ async function submit(event) {
       color: "error",
     });
 
-    console.error("Submission failed:", error);
+    console.error("Submission failed:", error.response?.data || error);
   } finally {
     loading.value = false;
   }
