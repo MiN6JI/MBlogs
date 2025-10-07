@@ -65,7 +65,6 @@
           class="mt-3"
           block
           label="Update Post"
-          @click.prevent="submit"
           size="lg"
           :loading="loading"
           loading-icon="svg-spinners:dot-revolve"

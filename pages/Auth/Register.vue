@@ -126,6 +126,7 @@ definePageMeta({
 import { useToast } from "#imports";
 import { validation } from "~/schemas/validation";
 const { $apiFetch } = useNuxtApp();
+const { $axios } = useNuxtApp();
 
 const toast = useToast();
 const loading = ref(false);
@@ -140,15 +141,8 @@ const formInputs = reactive({
   password_confirmation: null,
 });
 
-async function csrf() {
-  return $apiFetch(`sanctum/csrf-cookie`, {
-    credentials: "include",
-  });
-}
-
 async function submit() {
   loading.value = true;
-  await csrf();
 
   const formData = new FormData();
   formData.append("email", formInputs.email);
@@ -161,10 +155,7 @@ async function submit() {
     password_confirmation: formInputs.password_confirmation,
   };
   try {
-    await useNuxtApp().$apiFetch("/register", {
-      method: "POST",
-      body: payload,
-    });
+    await $axios.post("api/register", payload);
 
     toast.add({
       title: "Success",
