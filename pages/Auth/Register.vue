@@ -167,7 +167,7 @@ async function submit() {
     const user = await $axios.get("api/user");
 
     const { setUser } = useAuth();
-    setUser(user.name);
+    setUser(data.name);
 
     window.location.pathname = "/profile";
   } catch (error) {
