@@ -91,6 +91,7 @@ import { reactive } from "vue";
 import { validation } from "~/schemas/validation";
 import { useToast } from "#imports";
 
+const { $axios } = useNuxtApp();
 const router = useRouter();
 const formInputs = reactive({
   title: "",
@@ -117,11 +118,10 @@ async function submit(event) {
   if (formInputs.image) {
     formData.append("feature_image", formInputs.image);
   }
+
+  console.log(formData);
   try {
-    const response = await useNuxtApp().$apiFetch("/api/post", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await $axios.post("/api/post", formData);
 
     toast.add({
       title: "Success",
@@ -131,8 +131,9 @@ async function submit(event) {
     });
 
     resetForm();
+
     router.push("/blogs");
-    console.log("Submitted:", response);
+    console.log("Submitted:", response.data);
   } catch (error) {
     toast.add({
       title: "Error",

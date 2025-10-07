@@ -1,13 +1,20 @@
+import { ref, computed } from 'vue';
+
 export function useAuth() {
+    const user = ref(process.client ? JSON.parse(localStorage.getItem('user')) : null);
+
     function setUser(name) {
-        localStorage.setItem('user', JSON.stringify({ name }))
+        const data = { name }
+        user.value = data
+        localStorage.setItem('user', JSON.stringify(data))
     }
 
     function getUser() {
-        return JSON.parse(localStorage.getItem('user'))
+        return user.value
     }
 
     function removeUser() {
+        user.value = null
         localStorage.removeItem('user')
     }
 
@@ -15,6 +22,7 @@ export function useAuth() {
         if (process.client) {
             return !!localStorage.getItem('user')
         }
+        return false
     })
 
     return { setUser, getUser, removeUser, isLoggedIn }

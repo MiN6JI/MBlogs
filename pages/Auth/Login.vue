@@ -85,8 +85,8 @@ definePageMeta({
 
 import { useToast } from "#imports";
 import { validation } from "~/schemas/validation";
-const { $axios } = useNuxtApp();
 
+const { $axios } = useNuxtApp();
 const { $apiFetch } = useNuxtApp();
 
 const toast = useToast();

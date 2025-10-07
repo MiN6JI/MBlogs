@@ -55,7 +55,7 @@
         <!-- Current image preview -->
         <div class="py-3 flex justify-center sm:justify-start">
           <img
-            :src="formInputs.feature_image"
+            :src="formInputs.feature_image || 'Image not Found'"
             alt="Current blog image"
             class="rounded-md w-[120px] sm:w-[160px] h-[90px] sm:h-[110px] object-cover shadow"
           />
