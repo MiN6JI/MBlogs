@@ -164,7 +164,7 @@ async function submit() {
       color: "primary",
     });
 
-    const user = await $apiFetch("api/user");
+    const user = await $axios.get("api/user");
 
     const { setUser } = useAuth();
     setUser(user.name);
