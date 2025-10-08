@@ -155,7 +155,7 @@ async function submit() {
     password_confirmation: formInputs.password_confirmation,
   };
   try {
-    await $axios.post("api/register", payload);
+    const { data } = await $axios.post("api/register", payload);
 
     toast.add({
       title: "Success",
@@ -167,7 +167,7 @@ async function submit() {
     const user = await $axios.get("api/user");
 
     const { setUser } = useAuth();
-    setUser(data.name);
+    setUser(data.user);
 
     window.location.pathname = "/profile";
   } catch (error) {

@@ -1,4 +1,5 @@
 <template>
+  <pre>{{ posts }}</pre>
   <UContainer class="flex-col-center gap-6">
     <!-- User Profile Card -->
     <UCard
