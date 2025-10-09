@@ -164,21 +164,14 @@ async function submit() {
       color: "primary",
     });
 
-    const user = await $axios.get("api/user");
-
-    const { setUser } = useAuth();
-    setUser(data.user);
-
-    window.location.pathname = "/profile";
+    await navigateTo("/auth/login");
   } catch (error) {
     toast.add({
       title: "Error",
-      description: "Failed to Submit, please try again later!",
+      description: error.response?.data?.message || "Invalid credentials.",
       icon: "i-heroicons-x-circle",
       color: "error",
     });
-
-    console.error("Submission failed:", error);
   } finally {
     loading.value = false;
   }
