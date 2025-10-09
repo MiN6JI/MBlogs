@@ -43,6 +43,7 @@
             highlight
             class="w-full"
             v-model="formInputs.tag"
+            placeholder="e.g. Travel"
             :ui="{ base: 'text-muted dark:bg-muted' }"
           />
         </UFormField>

@@ -115,7 +115,10 @@
       class="p-1"
     />
   </section>
-  <editor-content :editor="editor" class="w-full" />
+  <editor-content
+    :editor="editor"
+    class="w-full"
+  />
 </template>
 
 <script setup>
@@ -157,7 +160,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "tiptap max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-[#dee7f2] focus:border-[#2563eb] focus:ring-2 focus:ring-blue-200 px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto transition-all duration-200",
+        "max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto focus:outline-none",
     },
   },
 });
@@ -174,8 +177,8 @@ watch(
 
 <style scoped>
 :deep(.tiptap:focus) {
-  outline: none;
-  border-color: #fff; /* bright blue on focus */
+  outline: 1px solid #fff;
+  border: 1px solid #fff;
 }
 
 /* .tiptap blockquote {
