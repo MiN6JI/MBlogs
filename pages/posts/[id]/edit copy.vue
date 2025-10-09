@@ -16,13 +16,13 @@
     </div>
   </UContainer>
 
-  <pre>{{ formInputs }}</pre>
-
   <UContainer class="px-4 sm:px-6 lg:px-8 py-6">
     <div class="w-full mx-auto py-8 sm:py-10 rounded-xl bg-muted">
       <UForm
+        :schema="validation"
         class="mx-auto w-full sm:w-[90%] lg:w-[70%] space-y-4"
         :state="formInputs"
+        @submit.prevent="submit"
       >
         <UFormField name="title" label="Blog Title" size="lg">
           <UInput
@@ -34,19 +34,9 @@
             :ui="{ base: 'text-muted dark:bg-muted' }"
           />
         </UFormField>
+
         <UFormField name="body" label="Blog Body" size="lg">
           <PostEditor v-model="formInputs.body" />
-        </UFormField>
-
-        <UFormField name="tag" label="Tag" size="lg">
-          <UInput
-            color="secondary"
-            variant="outline"
-            highlight
-            class="w-full"
-            v-model="formInputs.tag"
-            :ui="{ base: 'text-muted dark:bg-muted' }"
-          />
         </UFormField>
 
         <UFormField name="image" label="Change Image" size="lg">
@@ -64,21 +54,17 @@
 
         <!-- Current image preview -->
         <div class="py-3 flex justify-center sm:justify-start">
-          <UFormField name="old image" label="Initial Image" size="lg">
-            <img
-              v-if="formInputs.feature_image"
-              :src="formInputs.feature_image"
-              alt="Current blog image"
-              class="rounded-md w-[120px] sm:w-[160px] h-[90px] sm:h-[110px] object-cover shadow"
-            />
-          </UFormField>
+          <img
+            :src="formInputs.feature_image || 'Image not Found'"
+            alt="Current blog image"
+            class="rounded-md w-[120px] sm:w-[160px] h-[90px] sm:h-[110px] object-cover shadow"
+          />
         </div>
 
         <UButton
           class="mt-3"
           block
           label="Update Post"
-          @click.prevent="submit"
           size="lg"
           :loading="loading"
           loading-icon="svg-spinners:dot-revolve"
@@ -89,65 +75,65 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { z } from "zod";
+import { reactive, onMounted } from "vue";
+import { validation } from "~/schemas/validation";
 import { useToast } from "#imports";
-
+import { resolveTypeElements } from "vue/compiler-sfc";
 const { $axios } = useNuxtApp();
 
 definePageMeta({
   middleware: ["auth"],
 });
 
-const route = useRoute();
 const router = useRouter();
+const route = useRoute();
+const { $apiFetch } = useNuxtApp();
+const formInputs = reactive({
+  title: "",
+  body: "",
+  image: null,
+});
+
 const loading = ref(false);
 const toast = useToast();
-const formInputs = ref({});
+const post = ref(null);
 
 onMounted(() => {
   getFormData();
 });
 
 function onFileChange(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  // Only store the file for submission
-  formInputs.value.image = file;
+  formInputs.image = e.target.files[0];
 }
 
 async function getFormData() {
   try {
     const response = await $axios.get(`api/posts-auth/${route.params.id}`);
-    formInputs.value = response.data;
+    post.value = response.data;
+    formInputs.id = post.value.id;
+    formInputs.title = post.value.title;
+    formInputs.body = post.value.body;
+    formInputs.feature_image = post.value.feature_image;
   } catch (e) {
-    // toast.add({ title: "Unauthorized Action", color: "error" });
-    // route.push("/");
+    router.push("/");
+    toast.add({ title: "Unauthorized Action", color: "error" });
   }
 }
 
-async function submit() {
+async function submit(event) {
+  console.log("Click");
   loading.value = true;
 
   const formData = new FormData();
-  formData.append("title", formInputs.value.title);
-  formData.append("body", formInputs.value.body);
-  formData.append("tag", formInputs.value.tag);
-  if (formInputs.value.image) {
-    formData.append("feature_image", formInputs.value.image);
-  }
-
-  for (let [key, value] of formData.entries()) {
-    console.log(key, value);
-  }
+  formData.append("title", formInputs.title);
+  formData.append("body", formInputs.body);
+  if (formInputs.image) formData.append("feature_image", formInputs.image);
 
   try {
     const response = await $axios.patch(
-      `api/post/${route.params.id}`,
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
+      `/api/post/${route.params.id}`,
+      formData
     );
 
     toast.add({
@@ -159,6 +145,7 @@ async function submit() {
 
     resetForm();
     router.push("/profile");
+    console.log("Submitted:", response.data);
   } catch (error) {
     if (error.response?.status === 403) {
       toast.add({
@@ -176,6 +163,8 @@ async function submit() {
       icon: "i-heroicons-x-circle",
       color: "error",
     });
+
+    console.error("Submission failed:", error.response?.data || error);
   } finally {
     loading.value = false;
   }
