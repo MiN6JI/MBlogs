@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="editor"
-    class="bg-white dark:bg-muted rounded-tr-md rounded-tl-md flex items-center flex-wrap gap-x-4 border-t-1 border-l-1 border-r-1 border-muted outline-1 outline-[#dee7f2] p-4"
+    class="bg-white dark:bg-muted rounded-tr-md rounded-tl-md flex items-center flex-wrap gap-4 border-t-1 border-l-1 border-r-1 border-muted outline-1 outline-[#dee7f2] p-4"
   >
     <UButton
       color="secondary"
@@ -115,10 +115,7 @@
       class="p-1"
     />
   </section>
-  <editor-content
-    :editor="editor"
-    class="w-full"
-  />
+  <editor-content :editor="editor" class="w-full" />
 </template>
 
 <script setup>
@@ -160,7 +157,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto focus:outline-none",
+        "max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto focus:outline-[#dee7f2] dark:focus:outline-[#fff] focus:border-[#E2E3E5]",
     },
   },
 });
@@ -176,10 +173,10 @@ watch(
 </script>
 
 <style scoped>
-:deep(.tiptap:focus) {
+/* :deep(.tiptap:focus) {
   outline: 1px solid #fff;
   border: 1px solid #fff;
-}
+} */
 
 /* .tiptap blockquote {
   border-left: 4px solid #ccc;
