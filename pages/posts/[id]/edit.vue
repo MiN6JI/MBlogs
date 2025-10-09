@@ -16,8 +16,6 @@
     </div>
   </UContainer>
 
-  <pre>{{ formInputs }}</pre>
-
   <UContainer class="px-4 sm:px-6 lg:px-8 py-6">
     <div class="w-full mx-auto py-8 sm:py-10 rounded-xl bg-muted">
       <UForm

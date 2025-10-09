@@ -157,7 +157,7 @@ const editor = useEditor({
   editorProps: {
     attributes: {
       class:
-        "max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-muted outline-1 outline-[#dee7f2] px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto focus:outline-none",
+        "tiptap max-w-none bg-white dark:bg-muted text-gray-800 dark:text-gray-100 rounded-br-md rounded-bl-md border border-[#dee7f2] focus:border-[#2563eb] focus:ring-2 focus:ring-blue-200 px-4 pb-4 min-h-[12rem] max-h-[12rem] overflow-y-auto transition-all duration-200",
     },
   },
 });
@@ -173,6 +173,11 @@ watch(
 </script>
 
 <style scoped>
+:deep(.tiptap:focus) {
+  outline: none;
+  border-color: #fff; /* bright blue on focus */
+}
+
 /* .tiptap blockquote {
   border-left: 4px solid #ccc;
   padding-left: 1rem;
