@@ -136,12 +136,14 @@ async function submit() {
     formData.append("feature_image", formInputs.value.image);
   }
 
+  formData.append("_method", "PATCH");
+  
   for (let [key, value] of formData.entries()) {
     console.log(key, value);
   }
 
   try {
-    const response = await $axios.patch(
+    const response = await $axios.post(
       `api/post/${route.params.id}`,
       formData,
       {
@@ -171,7 +173,9 @@ async function submit() {
 
     toast.add({
       title: "Error",
-      description: "Failed to submit post. Please try again!",
+      description:
+        error.response?.data?.message ||
+        "Failed to submit post. Please try again!",
       icon: "i-heroicons-x-circle",
       color: "error",
     });

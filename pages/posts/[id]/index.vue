@@ -53,9 +53,9 @@
           <div class="flex flex-col gap-3 py-4">
             <div class="text-muted">Written By</div>
             <div>
-              <span class="italic font-medium dark:text-white"
-                >Shruti Deorukhkar</span
-              >
+              <span class="italic font-medium dark:text-white">{{
+                post.user?.name
+              }}</span>
             </div>
           </div>
         </div>
