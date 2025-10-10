@@ -30,6 +30,7 @@
             :postImage="post.feature_image"
             :postLink="`/posts/${post.id}`"
             :postTitle="post.title"
+            :postExcept="post.body"
           />
         </div>
       </div>

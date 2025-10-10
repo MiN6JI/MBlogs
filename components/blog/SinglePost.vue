@@ -26,9 +26,8 @@
         <!-- Excerpt -->
         <p
           class="text-sm sm:text-base leading-5 text-muted-foreground line-clamp-3"
-        >
-          {{ postExcept }}
-        </p>
+          v-html="postExcept"
+        ></p>
       </div>
     </template>
   </UCard>
