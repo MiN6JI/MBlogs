@@ -1,10 +1,10 @@
 <template>
   <UCard
     variant="soft"
-    class="w-full rounded-2xl overflow-hidden"
+    class="w-full rounded-2xl overflow-hidden md:h-[450px] sm:h-auto"
     :ui="{
       body: 'p-0 sm:p-0',
-      footer: 'p-4 sm:p-6 bg-elevated',
+      footer: 'p-4 sm:p-6 bg-elevated h-[100%]',
     }"
   >
     <!-- Responsive Image -->
